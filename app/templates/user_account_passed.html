@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Congratulations! You Passed!{% endblock %}
+
+{% block content %}
+<h2 style="color: #16a34a;">Congratulations! You Passed!</h2>
+<p>Hi {{ name }},</p>
+<p>We are thrilled to inform you that your prop firm account has been successfully <strong>PASSED</strong>!</p>
+<p><strong>Prop Firm:</strong> {{ propfirm_name }}</p>
+<p><strong>Login ID:</strong> {{ login_id }}</p>
+<p>You can now access our live trading system and start your journey as a funded trader.</p>
+<a href="https://propsol-frontend.vercel.app/dashboard" class="button">Go to Dashboard</a>
+{% endblock %}

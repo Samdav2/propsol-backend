@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Prop Firm Account Failed{% endblock %}
+
+{% block content %}
+<h2 style="color: #dc2626;">Account Failed</h2>
+<p>A user's prop firm account has been marked as <strong>FAILED</strong>.</p>
+<table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+    <tr>
+        <td style="padding: 8px; border-bottom: 1px solid #e2e8f0; font-weight: bold;">User Email:</td>
+        <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">{{ user_email }}</td>
+    </tr>
+    <tr>
+        <td style="padding: 8px; border-bottom: 1px solid #e2e8f0; font-weight: bold;">Prop Firm:</td>
+        <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">{{ propfirm_name }}</td>
+    </tr>
+    <tr>
+        <td style="padding: 8px; border-bottom: 1px solid #e2e8f0; font-weight: bold;">Login ID:</td>
+        <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">{{ login_id }}</td>
+    </tr>
+</table>
+<a href="https://propsol-frontend.vercel.app/admin/prop-firms" class="button">View Registrations</a>
+{% endblock %}

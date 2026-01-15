@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | PropSol</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #0f172a;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 8rem;
+            margin: 0;
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+
+        p {
+            font-size: 1.5rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #3b82f6;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Floating Stars */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: float 10s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-10vh) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Robot Animation */
+        .robot-container {
+            margin-bottom: 2rem;
+            position: relative;
+            width: 150px;
+            height: 150px;
+        }
+
+        .robot {
+            width: 100%;
+            height: 100%;
+            animation: hover 3s ease-in-out infinite;
+        }
+
+        .head {
+            width: 80px;
+            height: 60px;
+            background: #e2e8f0;
+            border-radius: 15px;
+            position: absolute;
+            top: 20px;
+            left: 35px;
+            z-index: 2;
+        }
+
+        .eye {
+            width: 15px;
+            height: 15px;
+            background: #3b82f6;
+            border-radius: 50%;
+            position: absolute;
+            top: 20px;
+            box-shadow: 0 0 10px #3b82f6;
+            animation: blink 4s infinite;
+        }
+
+        .eye.left {
+            left: 15px;
+        }
+
+        .eye.right {
+            right: 15px;
+        }
+
+        .antenna {
+            width: 4px;
+            height: 20px;
+            background: #94a3b8;
+            position: absolute;
+            top: -15px;
+            left: 38px;
+        }
+
+        .antenna::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: #ef4444;
+            border-radius: 50%;
+            position: absolute;
+            top: -8px;
+            left: -3px;
+            animation: pulse 2s infinite;
+        }
+
+        .body {
+            width: 100px;
+            height: 80px;
+            background: #cbd5e1;
+            border-radius: 20px;
+            position: absolute;
+            top: 70px;
+            left: 25px;
+        }
+
+        .ring {
+            position: absolute;
+            border: 4px solid rgba(59, 130, 246, 0.3);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateX(70deg);
+            width: 180px;
+            height: 180px;
+            animation: spin 8s linear infinite;
+        }
+
+        @keyframes hover {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes blink {
+
+            0%,
+            96%,
+            100% {
+                transform: scaleY(1);
+            }
+
+            98% {
+                transform: scaleY(0.1);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: translate(-50%, -50%) rotateX(70deg) rotateZ(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotateX(70deg) rotateZ(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="stars" id="stars"></div>
+
+    <div class="container">
+        <div class="robot-container">
+            <div class="ring"></div>
+            <div class="robot">
+                <div class="head">
+                    <div class="antenna"></div>
+                    <div class="eye left"></div>
+                    <div class="eye right"></div>
+                </div>
+                <div class="body"></div>
+            </div>
+        </div>
+        <h1>404</h1>
+        <p>Oops! It looks like you're lost in space.</p>
+        <a href="https://propsol-frontend.vercel.app" class="btn">Return to Base</a>
+    </div>
+
+    <script>
+        // Generate stars
+        const starsContainer = document.getElementById('stars');
+        const starCount = 50;
+
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+
+            // Random position and size
+            const size = Math.random() * 3 + 1;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.left = `${Math.random() * 100}%`;
+
+            // Random animation duration and delay
+            const duration = Math.random() * 10 + 5;
+            const delay = Math.random() * 5;
+            star.style.animationDuration = `${duration}s`;
+            star.style.animationDelay = `-${delay}s`;
+
+            starsContainer.appendChild(star);
+        }
+    </script>
+</body>
+
+</html>

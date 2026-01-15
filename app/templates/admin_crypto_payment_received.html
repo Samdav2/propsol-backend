@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Crypto Payment Received</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            border-radius: 8px 8px 0 0;
+            text-align: center;
+            margin: -30px -30px 20px -30px;
+        }
+
+        .content {
+            padding: 20px 0;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .info-table td {
+            padding: 10px;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .info-table td:first-child {
+            font-weight: bold;
+            width: 40%;
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #dee2e6;
+            font-size: 12px;
+            color: #6c757d;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💰 New Crypto Payment Received</h1>
+        </div>
+        <div class="content">
+            <p>A new cryptocurrency payment has been successfully processed.</p>
+
+            <table class="info-table">
+                <tr>
+                    <td>User Email:</td>
+                    <td>{{ user_email }}</td>
+                </tr>
+                <tr>
+                    <td>Payment ID:</td>
+                    <td>{{ payment_id }}</td>
+                </tr>
+                <tr>
+                    <td>Status:</td>
+                    <td><strong>{{ status }}</strong></td>
+                </tr>
+            </table>
+
+            <p>Please review the payment details in your admin dashboard for more information.</p>
+        </div>
+        <div class="footer">
+            <p>This is an automated notification from your payment system.</p>
+        </div>
+    </div>
+</body>
+
+</html>

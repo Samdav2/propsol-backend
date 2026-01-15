@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Support Request Received{% endblock %}
+
+{% block content %}
+<h2>Support Request Received</h2>
+<p>Hi {{ name }},</p>
+<p>We have received your support request. Our team will get back to you as soon as possible.</p>
+<div style="background-color: #f1f5f9; padding: 15px; border-radius: 6px; margin: 20px 0;">
+    <p style="margin: 0; font-style: italic;">"{{ message }}"</p>
+</div>
+<p>Thank you for your patience.</p>
+{% endblock %}

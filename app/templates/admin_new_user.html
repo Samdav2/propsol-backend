@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}New User Registration{% endblock %}
+
+{% block content %}
+<h2>New User Registration</h2>
+<p>A new user has just signed up on PropSol.</p>
+<table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+    <tr>
+        <td style="padding: 8px; border-bottom: 1px solid #e2e8f0; font-weight: bold;">Name:</td>
+        <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">{{ name }}</td>
+    </tr>
+    <tr>
+        <td style="padding: 8px; border-bottom: 1px solid #e2e8f0; font-weight: bold;">Email:</td>
+        <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">{{ email }}</td>
+    </tr>
+    <tr>
+        <td style="padding: 8px; border-bottom: 1px solid #e2e8f0; font-weight: bold;">Joined At:</td>
+        <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">{{ created_at }}</td>
+    </tr>
+</table>
+<a href="https://propsol-frontend.vercel.app/admin/users" class="button">View Users</a>
+{% endblock %}

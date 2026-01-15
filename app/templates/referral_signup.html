@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}New Referral Signup{% endblock %}
+
+{% block content %}
+<h2>New Referral Signup!</h2>
+<p>Hi {{ referrer_name }},</p>
+<p>Great news! Someone just signed up using your referral link.</p>
+<p><strong>New User:</strong> {{ new_user_name }}</p>
+<p>You are one step closer to earning your referral bonus. Keep sharing!</p>
+<a href="https://propsol-frontend.vercel.app/dashboard/referrals" class="button">Check Referrals</a>
+{% endblock %}

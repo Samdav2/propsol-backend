@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Prop Firm Challenge Update{% endblock %}
+
+{% block content %}
+<h2 style="color: #dc2626;">Account Update</h2>
+<p>Hi {{ name }},</p>
+<p>We regret to inform you that your prop firm account challenge was not successful.</p>
+<p><strong>Prop Firm:</strong> {{ propfirm_name }}</p>
+<p><strong>Login ID:</strong> {{ login_id }}</p>
+<p>But don't worry! As per our guarantee, you are eligible for a full refund + compensation. Our team will be in touch
+    with you shortly regarding the next steps.</p>
+<a href="https://propsol-frontend.vercel.app/support" class="button">Contact Support</a>
+{% endblock %}

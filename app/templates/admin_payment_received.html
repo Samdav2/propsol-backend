@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Payment Received{% endblock %}
+
+{% block content %}
+<h2>Payment Received</h2>
+<p>A new payment has been successfully processed.</p>
+<table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+    <tr>
+        <td style="padding: 8px; border-bottom: 1px solid #e2e8f0; font-weight: bold;">User Email:</td>
+        <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">{{ user_email }}</td>
+    </tr>
+    <tr>
+        <td style="padding: 8px; border-bottom: 1px solid #e2e8f0; font-weight: bold;">Amount:</td>
+        <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">{{ amount }}</td>
+    </tr>
+    <tr>
+        <td style="padding: 8px; border-bottom: 1px solid #e2e8f0; font-weight: bold;">Reference:</td>
+        <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">{{ reference }}</td>
+    </tr>
+    <tr>
+        <td style="padding: 8px; border-bottom: 1px solid #e2e8f0; font-weight: bold;">Date:</td>
+        <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">{{ created_at }}</td>
+    </tr>
+</table>
+<a href="https://propsol-frontend.vercel.app/admin/transactions" class="button">View Transactions</a>
+{% endblock %}

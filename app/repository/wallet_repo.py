@@ -122,6 +122,64 @@ class ReferralEarningRepository(BaseRepository[ReferralEarning, dict, dict]):
             await self.session.refresh(earning)
         return earning
 
+    async def get_total_earnings_stats(self) -> dict:
+        """Get overall earning statistics"""
+        # This is a basic implementation. For large datasets, use direct SQL aggregation.
+        query = select(ReferralEarning)
+        result = await self.session.exec(query)
+        all_earnings = result.all()
+
+        total_paid = sum(e.amount for e in all_earnings if e.status in [EarningStatus.available, EarningStatus.released, EarningStatus.claimed])
+        total_pending = sum(e.amount for e in all_earnings if e.status == EarningStatus.locked)
+        total_volume = sum(e.amount * Decimal("50") for e in all_earnings) # Approximation if purchase amount not stored.
+        # TODO: Ideally we should store purchase amount in ReferralEarning or join with PropFirmRegistration
+
+        return {
+            "total_paid": total_paid,
+            "total_pending": total_pending,
+            "count": len(all_earnings)
+        }
+
+    async def get_top_affiliates(self, limit: int = 10) -> List[tuple]:
+        """Get top affiliates by total earnings"""
+        # Using python-side aggregation for now as SQLModel complex grouping can be tricky with async
+        # For production with many records, use raw SQL
+        query = select(ReferralEarning)
+        result = await self.session.exec(query)
+        all_earnings = result.all()
+
+        affiliate_stats = {}
+        for e in all_earnings:
+            if e.referrer_id not in affiliate_stats:
+                affiliate_stats[e.referrer_id] = {"amount": Decimal(0), "count": 0}
+
+            affiliate_stats[e.referrer_id]["amount"] += e.amount
+            affiliate_stats[e.referrer_id]["count"] += 1
+
+        # Sort by amount desc
+        sorted_stats = sorted(
+            [(k, v["amount"], v["count"]) for k, v in affiliate_stats.items()],
+            key=lambda x: x[1],
+            reverse=True
+        )
+
+        return sorted_stats[:limit]
+
+    async def get_product_stats(self) -> List[dict]:
+        """Get stats by pass type"""
+        query = select(ReferralEarning)
+        result = await self.session.exec(query)
+        all_earnings = result.all()
+
+        stats = {}
+        for e in all_earnings:
+            if e.pass_type not in stats:
+                stats[e.pass_type] = {"count": 0, "commission": Decimal(0)}
+            stats[e.pass_type]["count"] += 1
+            stats[e.pass_type]["commission"] += e.amount
+
+        return [{"product": k, "stats": v} for k, v in stats.items()]
+
 
 class WithdrawalRequestRepository(BaseRepository[WithdrawalRequest, dict, dict]):
     """Repository for WithdrawalRequest operations"""

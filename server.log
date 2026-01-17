@@ -1,313 +1,108 @@
 nohup: ignoring input
-INFO:     Started server process [540825]
+/home/rehack/anaconda3/lib/python3.13/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+INFO:     Started server process [671352]
 INFO:     Waiting for application startup.
-2025-12-13 17:21:41,629 INFO sqlalchemy.engine.Engine BEGIN (implicit)
-2025-12-13 17:21:41,629 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("user")
-2025-12-13 17:21:41,629 INFO sqlalchemy.engine.Engine [raw sql] ()
-2025-12-13 17:21:41,630 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("admin")
-2025-12-13 17:21:41,630 INFO sqlalchemy.engine.Engine [raw sql] ()
-2025-12-13 17:21:41,631 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("payment")
-2025-12-13 17:21:41,631 INFO sqlalchemy.engine.Engine [raw sql] ()
-2025-12-13 17:21:41,631 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("prop_firm_registration")
-2025-12-13 17:21:41,632 INFO sqlalchemy.engine.Engine [raw sql] ()
-2025-12-13 17:21:41,632 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("transactions")
-2025-12-13 17:21:41,632 INFO sqlalchemy.engine.Engine [raw sql] ()
-2025-12-13 17:21:41,632 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("discount_codes")
-2025-12-13 17:21:41,632 INFO sqlalchemy.engine.Engine [raw sql] ()
-2025-12-13 17:21:41,633 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("user_discount")
-2025-12-13 17:21:41,633 INFO sqlalchemy.engine.Engine [raw sql] ()
-2025-12-13 17:21:41,633 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("vat")
-2025-12-13 17:21:41,633 INFO sqlalchemy.engine.Engine [raw sql] ()
-2025-12-13 17:21:41,634 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("notification")
-2025-12-13 17:21:41,634 INFO sqlalchemy.engine.Engine [raw sql] ()
-2025-12-13 17:21:41,634 INFO sqlalchemy.engine.Engine COMMIT
+2026-01-17 16:10:03,156 - app - INFO - Starting up application...
+2026-01-17 16:10:03,158 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-01-17 16:10:03,159 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("user")
+2026-01-17 16:10:03,159 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-01-17 16:10:03,162 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("admin")
+2026-01-17 16:10:03,162 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-01-17 16:10:03,163 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("payment")
+2026-01-17 16:10:03,164 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-01-17 16:10:03,164 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("cryptopayment")
+2026-01-17 16:10:03,165 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-01-17 16:10:03,165 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("prop_firm_registration")
+2026-01-17 16:10:03,165 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-01-17 16:10:03,166 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("transactions")
+2026-01-17 16:10:03,166 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-01-17 16:10:03,167 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("discount_codes")
+2026-01-17 16:10:03,167 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-01-17 16:10:03,168 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("user_discount")
+2026-01-17 16:10:03,168 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-01-17 16:10:03,168 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("vat")
+2026-01-17 16:10:03,169 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-01-17 16:10:03,169 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("user_purchased_package")
+2026-01-17 16:10:03,169 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-01-17 16:10:03,170 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("notification")
+2026-01-17 16:10:03,170 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-01-17 16:10:03,170 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("wallet")
+2026-01-17 16:10:03,171 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-01-17 16:10:03,171 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("referral_earning")
+2026-01-17 16:10:03,171 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-01-17 16:10:03,172 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("withdrawal_request")
+2026-01-17 16:10:03,172 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-01-17 16:10:03,173 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("affiliate_settings")
+2026-01-17 16:10:03,173 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-01-17 16:10:03,173 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("global_affiliate_settings")
+2026-01-17 16:10:03,174 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-01-17 16:10:03,174 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("support")
+2026-01-17 16:10:03,175 INFO sqlalchemy.engine.Engine [raw sql] ()
+2026-01-17 16:10:03,177 INFO sqlalchemy.engine.Engine COMMIT
 INFO:     Application startup complete.
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-2025-12-13 17:22:00,163 INFO sqlalchemy.engine.Engine BEGIN (implicit)
-2025-12-13 17:22:00,198 INFO sqlalchemy.engine.Engine SELECT user.id, user.email, user.name, user.password, user."Status", user.referral_code, user.email_verified, user.created_at, user.updated_at, user.referred_by 
-FROM user 
-WHERE user.email = ?
-2025-12-13 17:22:00,199 INFO sqlalchemy.engine.Engine [generated in 0.00066s] ('testuser@example.com',)
-INFO:     127.0.0.1:41478 - "POST /api/v1/auth/login/access-token HTTP/1.1" 200 OK
-2025-12-13 17:22:01,259 INFO sqlalchemy.engine.Engine ROLLBACK
-2025-12-13 17:22:01,291 INFO sqlalchemy.engine.Engine BEGIN (implicit)
-2025-12-13 17:22:01,307 INFO sqlalchemy.engine.Engine SELECT user.id, user.email, user.name, user.password, user."Status", user.referral_code, user.email_verified, user.created_at, user.updated_at, user.referred_by 
-FROM user 
-WHERE user.id = ?
-2025-12-13 17:22:01,308 INFO sqlalchemy.engine.Engine [generated in 0.00127s] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:01,325 INFO sqlalchemy.engine.Engine SELECT payment.user_id AS payment_user_id, payment.id AS payment_id, payment.card_name AS payment_card_name, payment.card_number AS payment_card_number, payment.card_expiry_date AS payment_card_expiry_date, payment.card_type AS payment_card_type, payment.card_cvv AS payment_card_cvv, payment.created_at AS payment_created_at, payment.updated_at AS payment_updated_at 
-FROM payment 
-WHERE payment.user_id IN (?)
-2025-12-13 17:22:01,329 INFO sqlalchemy.engine.Engine [generated in 0.00425s] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:01,342 INFO sqlalchemy.engine.Engine SELECT transactions.users_id AS transactions_users_id, transactions.id AS transactions_id, transactions.type AS transactions_type, transactions.amount_cents AS transactions_amount_cents, transactions.status AS transactions_status, transactions.reference AS transactions_reference, transactions.created_at AS transactions_created_at, transactions.updated_at AS transactions_updated_at 
-FROM transactions 
-WHERE transactions.users_id IN (?)
-2025-12-13 17:22:01,342 INFO sqlalchemy.engine.Engine [generated in 0.00046s] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:01,363 INFO sqlalchemy.engine.Engine SELECT prop_firm_registration.user_id AS prop_firm_registration_user_id, prop_firm_registration.id AS prop_firm_registration_id, prop_firm_registration.login_id AS prop_firm_registration_login_id, prop_firm_registration.password AS prop_firm_registration_password, prop_firm_registration.propfirm_name AS prop_firm_registration_propfirm_name, prop_firm_registration.propfirm_website_link AS prop_firm_registration_propfirm_website_link, prop_firm_registration.server_name AS prop_firm_registration_server_name, prop_firm_registration.server_type AS prop_firm_registration_server_type, prop_firm_registration.challenges_step AS prop_firm_registration_challenges_step, prop_firm_registration.propfirm_account_cost AS prop_firm_registration_propfirm_account_cost, prop_firm_registration.account_size AS prop_firm_registration_account_size, prop_firm_registration.account_phases AS prop_firm_registration_account_phases, prop_firm_registration.trading_platform AS prop_firm_registration_trading_platform, prop_firm_registration.propfirm_rules AS prop_firm_registration_propfirm_rules, prop_firm_registration.whatsapp_no AS prop_firm_registration_whatsapp_no, prop_firm_registration.telegram_username AS prop_firm_registration_telegram_username, prop_firm_registration.account_status AS prop_firm_registration_account_status, prop_firm_registration.created_at AS prop_firm_registration_created_at, prop_firm_registration.updated_at AS prop_firm_registration_updated_at 
-FROM prop_firm_registration 
-WHERE prop_firm_registration.user_id IN (?)
-2025-12-13 17:22:01,364 INFO sqlalchemy.engine.Engine [generated in 0.00040s] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:01,377 INFO sqlalchemy.engine.Engine SELECT user_discount.user_id AS user_discount_user_id, user_discount.id AS user_discount_id, user_discount.discount_id AS user_discount_discount_id, user_discount.discount_code AS user_discount_discount_code, user_discount.created_at AS user_discount_created_at, user_discount.updated_at AS user_discount_updated_at 
-FROM user_discount 
-WHERE user_discount.user_id IN (?)
-2025-12-13 17:22:01,377 INFO sqlalchemy.engine.Engine [generated in 0.00037s] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:01,383 INFO sqlalchemy.engine.Engine INSERT INTO payment (id, user_id, card_name, card_number, card_expiry_date, card_type, card_cvv, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-2025-12-13 17:22:01,383 INFO sqlalchemy.engine.Engine [generated in 0.00059s] ('d68061df6d564db798c59e8d9ad76a0a', 'a700b774fb8a49cfb0674b5d62afc139', 'Test Card', '1234567890123456', '2026-12-13 17:22:01.265152', 'Visa', '123', '2025-12-13 16:22:01.380599', '2025-12-13 16:22:01.380619')
-2025-12-13 17:22:01,385 INFO sqlalchemy.engine.Engine COMMIT
-2025-12-13 17:22:01,391 INFO sqlalchemy.engine.Engine BEGIN (implicit)
-2025-12-13 17:22:01,392 INFO sqlalchemy.engine.Engine SELECT payment.id, payment.user_id, payment.card_name, payment.card_number, payment.card_expiry_date, payment.card_type, payment.card_cvv, payment.created_at, payment.updated_at 
-FROM payment 
-WHERE payment.id = ?
-2025-12-13 17:22:01,392 INFO sqlalchemy.engine.Engine [generated in 0.00019s] ('d68061df6d564db798c59e8d9ad76a0a',)
-INFO:     127.0.0.1:41478 - "POST /api/v1/payments/ HTTP/1.1" 200 OK
-2025-12-13 17:22:01,393 INFO sqlalchemy.engine.Engine ROLLBACK
-2025-12-13 17:22:01,397 INFO sqlalchemy.engine.Engine BEGIN (implicit)
-2025-12-13 17:22:01,397 INFO sqlalchemy.engine.Engine SELECT user.id, user.email, user.name, user.password, user."Status", user.referral_code, user.email_verified, user.created_at, user.updated_at, user.referred_by 
-FROM user 
-WHERE user.id = ?
-2025-12-13 17:22:01,397 INFO sqlalchemy.engine.Engine [cached since 0.09061s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:01,399 INFO sqlalchemy.engine.Engine SELECT payment.user_id AS payment_user_id, payment.id AS payment_id, payment.card_name AS payment_card_name, payment.card_number AS payment_card_number, payment.card_expiry_date AS payment_card_expiry_date, payment.card_type AS payment_card_type, payment.card_cvv AS payment_card_cvv, payment.created_at AS payment_created_at, payment.updated_at AS payment_updated_at 
-FROM payment 
-WHERE payment.user_id IN (?)
-2025-12-13 17:22:01,399 INFO sqlalchemy.engine.Engine [cached since 0.07395s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:01,401 INFO sqlalchemy.engine.Engine SELECT transactions.users_id AS transactions_users_id, transactions.id AS transactions_id, transactions.type AS transactions_type, transactions.amount_cents AS transactions_amount_cents, transactions.status AS transactions_status, transactions.reference AS transactions_reference, transactions.created_at AS transactions_created_at, transactions.updated_at AS transactions_updated_at 
-FROM transactions 
-WHERE transactions.users_id IN (?)
-2025-12-13 17:22:01,401 INFO sqlalchemy.engine.Engine [cached since 0.05942s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:01,403 INFO sqlalchemy.engine.Engine SELECT prop_firm_registration.user_id AS prop_firm_registration_user_id, prop_firm_registration.id AS prop_firm_registration_id, prop_firm_registration.login_id AS prop_firm_registration_login_id, prop_firm_registration.password AS prop_firm_registration_password, prop_firm_registration.propfirm_name AS prop_firm_registration_propfirm_name, prop_firm_registration.propfirm_website_link AS prop_firm_registration_propfirm_website_link, prop_firm_registration.server_name AS prop_firm_registration_server_name, prop_firm_registration.server_type AS prop_firm_registration_server_type, prop_firm_registration.challenges_step AS prop_firm_registration_challenges_step, prop_firm_registration.propfirm_account_cost AS prop_firm_registration_propfirm_account_cost, prop_firm_registration.account_size AS prop_firm_registration_account_size, prop_firm_registration.account_phases AS prop_firm_registration_account_phases, prop_firm_registration.trading_platform AS prop_firm_registration_trading_platform, prop_firm_registration.propfirm_rules AS prop_firm_registration_propfirm_rules, prop_firm_registration.whatsapp_no AS prop_firm_registration_whatsapp_no, prop_firm_registration.telegram_username AS prop_firm_registration_telegram_username, prop_firm_registration.account_status AS prop_firm_registration_account_status, prop_firm_registration.created_at AS prop_firm_registration_created_at, prop_firm_registration.updated_at AS prop_firm_registration_updated_at 
-FROM prop_firm_registration 
-WHERE prop_firm_registration.user_id IN (?)
-2025-12-13 17:22:01,403 INFO sqlalchemy.engine.Engine [cached since 0.03991s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:01,404 INFO sqlalchemy.engine.Engine SELECT user_discount.user_id AS user_discount_user_id, user_discount.id AS user_discount_id, user_discount.discount_id AS user_discount_discount_id, user_discount.discount_code AS user_discount_discount_code, user_discount.created_at AS user_discount_created_at, user_discount.updated_at AS user_discount_updated_at 
-FROM user_discount 
-WHERE user_discount.user_id IN (?)
-2025-12-13 17:22:01,405 INFO sqlalchemy.engine.Engine [cached since 0.02807s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:01,407 INFO sqlalchemy.engine.Engine INSERT INTO transactions (id, users_id, type, amount_cents, status, reference, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-2025-12-13 17:22:01,407 INFO sqlalchemy.engine.Engine [generated in 0.00039s] ('5406077305364629a653967f5247a929', 'a700b774fb8a49cfb0674b5d62afc139', 'deposit', 1000.0, 'pending', 'REF123', '2025-12-13 16:22:01.406267', '2025-12-13 16:22:01.406281')
-2025-12-13 17:22:01,408 INFO sqlalchemy.engine.Engine COMMIT
-2025-12-13 17:22:01,411 INFO sqlalchemy.engine.Engine BEGIN (implicit)
-2025-12-13 17:22:01,412 INFO sqlalchemy.engine.Engine SELECT transactions.id, transactions.users_id, transactions.type, transactions.amount_cents, transactions.status, transactions.reference, transactions.created_at, transactions.updated_at 
-FROM transactions 
-WHERE transactions.id = ?
-2025-12-13 17:22:01,412 INFO sqlalchemy.engine.Engine [generated in 0.00023s] ('5406077305364629a653967f5247a929',)
-INFO:     127.0.0.1:41478 - "POST /api/v1/transactions/ HTTP/1.1" 200 OK
-2025-12-13 17:22:01,413 INFO sqlalchemy.engine.Engine ROLLBACK
-2025-12-13 17:22:01,416 INFO sqlalchemy.engine.Engine BEGIN (implicit)
-2025-12-13 17:22:01,417 INFO sqlalchemy.engine.Engine SELECT user.id, user.email, user.name, user.password, user."Status", user.referral_code, user.email_verified, user.created_at, user.updated_at, user.referred_by 
-FROM user 
-WHERE user.id = ?
-2025-12-13 17:22:01,417 INFO sqlalchemy.engine.Engine [cached since 0.11s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:01,418 INFO sqlalchemy.engine.Engine SELECT payment.user_id AS payment_user_id, payment.id AS payment_id, payment.card_name AS payment_card_name, payment.card_number AS payment_card_number, payment.card_expiry_date AS payment_card_expiry_date, payment.card_type AS payment_card_type, payment.card_cvv AS payment_card_cvv, payment.created_at AS payment_created_at, payment.updated_at AS payment_updated_at 
-FROM payment 
-WHERE payment.user_id IN (?)
-2025-12-13 17:22:01,419 INFO sqlalchemy.engine.Engine [cached since 0.09367s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:01,420 INFO sqlalchemy.engine.Engine SELECT transactions.users_id AS transactions_users_id, transactions.id AS transactions_id, transactions.type AS transactions_type, transactions.amount_cents AS transactions_amount_cents, transactions.status AS transactions_status, transactions.reference AS transactions_reference, transactions.created_at AS transactions_created_at, transactions.updated_at AS transactions_updated_at 
-FROM transactions 
-WHERE transactions.users_id IN (?)
-2025-12-13 17:22:01,420 INFO sqlalchemy.engine.Engine [cached since 0.07903s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:01,422 INFO sqlalchemy.engine.Engine SELECT prop_firm_registration.user_id AS prop_firm_registration_user_id, prop_firm_registration.id AS prop_firm_registration_id, prop_firm_registration.login_id AS prop_firm_registration_login_id, prop_firm_registration.password AS prop_firm_registration_password, prop_firm_registration.propfirm_name AS prop_firm_registration_propfirm_name, prop_firm_registration.propfirm_website_link AS prop_firm_registration_propfirm_website_link, prop_firm_registration.server_name AS prop_firm_registration_server_name, prop_firm_registration.server_type AS prop_firm_registration_server_type, prop_firm_registration.challenges_step AS prop_firm_registration_challenges_step, prop_firm_registration.propfirm_account_cost AS prop_firm_registration_propfirm_account_cost, prop_firm_registration.account_size AS prop_firm_registration_account_size, prop_firm_registration.account_phases AS prop_firm_registration_account_phases, prop_firm_registration.trading_platform AS prop_firm_registration_trading_platform, prop_firm_registration.propfirm_rules AS prop_firm_registration_propfirm_rules, prop_firm_registration.whatsapp_no AS prop_firm_registration_whatsapp_no, prop_firm_registration.telegram_username AS prop_firm_registration_telegram_username, prop_firm_registration.account_status AS prop_firm_registration_account_status, prop_firm_registration.created_at AS prop_firm_registration_created_at, prop_firm_registration.updated_at AS prop_firm_registration_updated_at 
-FROM prop_firm_registration 
-WHERE prop_firm_registration.user_id IN (?)
-2025-12-13 17:22:01,422 INFO sqlalchemy.engine.Engine [cached since 0.05917s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:01,424 INFO sqlalchemy.engine.Engine SELECT user_discount.user_id AS user_discount_user_id, user_discount.id AS user_discount_id, user_discount.discount_id AS user_discount_discount_id, user_discount.discount_code AS user_discount_discount_code, user_discount.created_at AS user_discount_created_at, user_discount.updated_at AS user_discount_updated_at 
-FROM user_discount 
-WHERE user_discount.user_id IN (?)
-2025-12-13 17:22:01,424 INFO sqlalchemy.engine.Engine [cached since 0.04713s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:01,427 INFO sqlalchemy.engine.Engine INSERT INTO prop_firm_registration (id, user_id, login_id, password, propfirm_name, propfirm_website_link, server_name, server_type, challenges_step, propfirm_account_cost, account_size, account_phases, trading_platform, propfirm_rules, whatsapp_no, telegram_username, account_status, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2025-12-13 17:22:01,427 INFO sqlalchemy.engine.Engine [generated in 0.00072s] ('28c5250422294177a491d8f668f2e088', 'a700b774fb8a49cfb0674b5d62afc139', '123456', 'password', 'MyPropFirm', 'https://example.com', 'Server1', 'MT4', 1, 100.0, 10000.0, 2, 'MT4', 'No rules', '1234567890', 'telegram', 'pending', '2025-12-13 16:22:01.425302', '2025-12-13 16:22:01.425316')
-2025-12-13 17:22:01,430 INFO sqlalchemy.engine.Engine COMMIT
-2025-12-13 17:22:01,435 INFO sqlalchemy.engine.Engine BEGIN (implicit)
-2025-12-13 17:22:01,437 INFO sqlalchemy.engine.Engine SELECT prop_firm_registration.id, prop_firm_registration.user_id, prop_firm_registration.login_id, prop_firm_registration.password, prop_firm_registration.propfirm_name, prop_firm_registration.propfirm_website_link, prop_firm_registration.server_name, prop_firm_registration.server_type, prop_firm_registration.challenges_step, prop_firm_registration.propfirm_account_cost, prop_firm_registration.account_size, prop_firm_registration.account_phases, prop_firm_registration.trading_platform, prop_firm_registration.propfirm_rules, prop_firm_registration.whatsapp_no, prop_firm_registration.telegram_username, prop_firm_registration.account_status, prop_firm_registration.created_at, prop_firm_registration.updated_at 
-FROM prop_firm_registration 
-WHERE prop_firm_registration.id = ?
-2025-12-13 17:22:01,437 INFO sqlalchemy.engine.Engine [generated in 0.00025s] ('28c5250422294177a491d8f668f2e088',)
-INFO:     127.0.0.1:41478 - "POST /api/v1/prop-firm/ HTTP/1.1" 200 OK
-2025-12-13 17:22:01,440 INFO sqlalchemy.engine.Engine ROLLBACK
-2025-12-13 17:22:01,445 INFO sqlalchemy.engine.Engine BEGIN (implicit)
-2025-12-13 17:22:01,449 INFO sqlalchemy.engine.Engine SELECT admin.id, admin.email, admin.name, admin.password, admin."Status", admin.email_verified, admin.created_at, admin.updated_at 
+2026-01-17 16:10:06,222 - app - INFO - Request: GET /api/v1/ - Status: 404 - Duration: 1.32ms
+INFO:     127.0.0.1:60394 - "GET /api/v1/ HTTP/1.1" 404 Not Found
+2026-01-17 16:10:06,232 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-01-17 16:10:06,278 INFO sqlalchemy.engine.Engine SELECT admin.id, admin.email, admin.name, admin.password, admin."Status", admin.email_verified, admin.created_at, admin.updated_at 
 FROM admin 
 WHERE admin.email = ?
-2025-12-13 17:22:01,449 INFO sqlalchemy.engine.Engine [generated in 0.00033s] ('admin@example.com',)
-INFO:     127.0.0.1:41478 - "POST /api/v1/auth/login/admin/access-token HTTP/1.1" 200 OK
-2025-12-13 17:22:01,981 INFO sqlalchemy.engine.Engine ROLLBACK
-2025-12-13 17:22:01,987 INFO sqlalchemy.engine.Engine BEGIN (implicit)
-2025-12-13 17:22:01,988 INFO sqlalchemy.engine.Engine SELECT admin.id, admin.email, admin.name, admin.password, admin."Status", admin.email_verified, admin.created_at, admin.updated_at 
+2026-01-17 16:10:06,278 INFO sqlalchemy.engine.Engine [generated in 0.00028s] ('admin@example.com',)
+2026-01-17 16:10:06,610 - app - INFO - Request: POST /api/v1/auth/login/admin/access-token - Status: 200 - Duration: 384.07ms
+INFO:     127.0.0.1:60402 - "POST /api/v1/auth/login/admin/access-token HTTP/1.1" 200 OK
+2026-01-17 16:10:06,611 INFO sqlalchemy.engine.Engine ROLLBACK
+2026-01-17 16:10:06,616 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-01-17 16:10:06,617 INFO sqlalchemy.engine.Engine SELECT admin.id, admin.email, admin.name, admin.password, admin."Status", admin.email_verified, admin.created_at, admin.updated_at 
 FROM admin 
 WHERE admin.id = ?
-2025-12-13 17:22:01,988 INFO sqlalchemy.engine.Engine [generated in 0.00025s] ('a67644c85d914a35bb28f47937ccd75e',)
-2025-12-13 17:22:01,993 INFO sqlalchemy.engine.Engine SELECT discount_codes.id, discount_codes.discount_name, discount_codes.discount_code, discount_codes.percentage, discount_codes.expires_at, discount_codes.created_at, discount_codes.updated_at 
-FROM discount_codes 
-WHERE discount_codes.discount_code = ?
-2025-12-13 17:22:01,993 INFO sqlalchemy.engine.Engine [generated in 0.00036s] ('WELCOME10',)
-2025-12-13 17:22:01,995 INFO sqlalchemy.engine.Engine ROLLBACK
-INFO:     127.0.0.1:41478 - "POST /api/v1/discounts/discounts HTTP/1.1" 400 Bad Request
-2025-12-13 17:22:02,001 INFO sqlalchemy.engine.Engine BEGIN (implicit)
-2025-12-13 17:22:02,002 INFO sqlalchemy.engine.Engine SELECT user.id, user.email, user.name, user.password, user."Status", user.referral_code, user.email_verified, user.created_at, user.updated_at, user.referred_by 
-FROM user 
-WHERE user.id = ?
-2025-12-13 17:22:02,002 INFO sqlalchemy.engine.Engine [cached since 0.6949s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:02,008 INFO sqlalchemy.engine.Engine SELECT payment.user_id AS payment_user_id, payment.id AS payment_id, payment.card_name AS payment_card_name, payment.card_number AS payment_card_number, payment.card_expiry_date AS payment_card_expiry_date, payment.card_type AS payment_card_type, payment.card_cvv AS payment_card_cvv, payment.created_at AS payment_created_at, payment.updated_at AS payment_updated_at 
-FROM payment 
-WHERE payment.user_id IN (?)
-2025-12-13 17:22:02,008 INFO sqlalchemy.engine.Engine [cached since 0.6833s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:02,011 INFO sqlalchemy.engine.Engine SELECT transactions.users_id AS transactions_users_id, transactions.id AS transactions_id, transactions.type AS transactions_type, transactions.amount_cents AS transactions_amount_cents, transactions.status AS transactions_status, transactions.reference AS transactions_reference, transactions.created_at AS transactions_created_at, transactions.updated_at AS transactions_updated_at 
-FROM transactions 
-WHERE transactions.users_id IN (?)
-2025-12-13 17:22:02,012 INFO sqlalchemy.engine.Engine [cached since 0.6706s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:02,015 INFO sqlalchemy.engine.Engine SELECT prop_firm_registration.user_id AS prop_firm_registration_user_id, prop_firm_registration.id AS prop_firm_registration_id, prop_firm_registration.login_id AS prop_firm_registration_login_id, prop_firm_registration.password AS prop_firm_registration_password, prop_firm_registration.propfirm_name AS prop_firm_registration_propfirm_name, prop_firm_registration.propfirm_website_link AS prop_firm_registration_propfirm_website_link, prop_firm_registration.server_name AS prop_firm_registration_server_name, prop_firm_registration.server_type AS prop_firm_registration_server_type, prop_firm_registration.challenges_step AS prop_firm_registration_challenges_step, prop_firm_registration.propfirm_account_cost AS prop_firm_registration_propfirm_account_cost, prop_firm_registration.account_size AS prop_firm_registration_account_size, prop_firm_registration.account_phases AS prop_firm_registration_account_phases, prop_firm_registration.trading_platform AS prop_firm_registration_trading_platform, prop_firm_registration.propfirm_rules AS prop_firm_registration_propfirm_rules, prop_firm_registration.whatsapp_no AS prop_firm_registration_whatsapp_no, prop_firm_registration.telegram_username AS prop_firm_registration_telegram_username, prop_firm_registration.account_status AS prop_firm_registration_account_status, prop_firm_registration.created_at AS prop_firm_registration_created_at, prop_firm_registration.updated_at AS prop_firm_registration_updated_at 
-FROM prop_firm_registration 
-WHERE prop_firm_registration.user_id IN (?)
-2025-12-13 17:22:02,015 INFO sqlalchemy.engine.Engine [cached since 0.6522s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:02,018 INFO sqlalchemy.engine.Engine SELECT user_discount.user_id AS user_discount_user_id, user_discount.id AS user_discount_id, user_discount.discount_id AS user_discount_discount_id, user_discount.discount_code AS user_discount_discount_code, user_discount.created_at AS user_discount_created_at, user_discount.updated_at AS user_discount_updated_at 
-FROM user_discount 
-WHERE user_discount.user_id IN (?)
-2025-12-13 17:22:02,019 INFO sqlalchemy.engine.Engine [cached since 0.6423s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:02,022 INFO sqlalchemy.engine.Engine SELECT discount_codes.id, discount_codes.discount_name, discount_codes.discount_code, discount_codes.percentage, discount_codes.expires_at, discount_codes.created_at, discount_codes.updated_at 
-FROM discount_codes 
-WHERE discount_codes.discount_code = ?
-2025-12-13 17:22:02,023 INFO sqlalchemy.engine.Engine [cached since 0.03008s ago] ('WELCOME10',)
-2025-12-13 17:22:02,026 INFO sqlalchemy.engine.Engine SELECT user_discount.id, user_discount.discount_id, user_discount.user_id, user_discount.discount_code, user_discount.created_at, user_discount.updated_at 
-FROM user_discount 
-WHERE user_discount.user_id = ? AND user_discount.discount_code = ?
-2025-12-13 17:22:02,026 INFO sqlalchemy.engine.Engine [generated in 0.00032s] ('a700b774fb8a49cfb0674b5d62afc139', 'WELCOME10')
-2025-12-13 17:22:02,029 INFO sqlalchemy.engine.Engine ROLLBACK
-INFO:     127.0.0.1:41478 - "POST /api/v1/discounts/apply-discount HTTP/1.1" 400 Bad Request
-2025-12-13 17:22:02,037 INFO sqlalchemy.engine.Engine BEGIN (implicit)
-2025-12-13 17:22:02,044 INFO sqlalchemy.engine.Engine SELECT user.id, user.email, user.name, user.password, user."Status", user.referral_code, user.email_verified, user.created_at, user.updated_at, user.referred_by 
-FROM user 
-WHERE user.id = ?
-2025-12-13 17:22:02,044 INFO sqlalchemy.engine.Engine [cached since 0.737s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:02,046 INFO sqlalchemy.engine.Engine SELECT payment.user_id AS payment_user_id, payment.id AS payment_id, payment.card_name AS payment_card_name, payment.card_number AS payment_card_number, payment.card_expiry_date AS payment_card_expiry_date, payment.card_type AS payment_card_type, payment.card_cvv AS payment_card_cvv, payment.created_at AS payment_created_at, payment.updated_at AS payment_updated_at 
-FROM payment 
-WHERE payment.user_id IN (?)
-2025-12-13 17:22:02,046 INFO sqlalchemy.engine.Engine [cached since 0.7211s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:02,054 INFO sqlalchemy.engine.Engine SELECT transactions.users_id AS transactions_users_id, transactions.id AS transactions_id, transactions.type AS transactions_type, transactions.amount_cents AS transactions_amount_cents, transactions.status AS transactions_status, transactions.reference AS transactions_reference, transactions.created_at AS transactions_created_at, transactions.updated_at AS transactions_updated_at 
-FROM transactions 
-WHERE transactions.users_id IN (?)
-2025-12-13 17:22:02,055 INFO sqlalchemy.engine.Engine [cached since 0.7134s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:02,061 INFO sqlalchemy.engine.Engine SELECT prop_firm_registration.user_id AS prop_firm_registration_user_id, prop_firm_registration.id AS prop_firm_registration_id, prop_firm_registration.login_id AS prop_firm_registration_login_id, prop_firm_registration.password AS prop_firm_registration_password, prop_firm_registration.propfirm_name AS prop_firm_registration_propfirm_name, prop_firm_registration.propfirm_website_link AS prop_firm_registration_propfirm_website_link, prop_firm_registration.server_name AS prop_firm_registration_server_name, prop_firm_registration.server_type AS prop_firm_registration_server_type, prop_firm_registration.challenges_step AS prop_firm_registration_challenges_step, prop_firm_registration.propfirm_account_cost AS prop_firm_registration_propfirm_account_cost, prop_firm_registration.account_size AS prop_firm_registration_account_size, prop_firm_registration.account_phases AS prop_firm_registration_account_phases, prop_firm_registration.trading_platform AS prop_firm_registration_trading_platform, prop_firm_registration.propfirm_rules AS prop_firm_registration_propfirm_rules, prop_firm_registration.whatsapp_no AS prop_firm_registration_whatsapp_no, prop_firm_registration.telegram_username AS prop_firm_registration_telegram_username, prop_firm_registration.account_status AS prop_firm_registration_account_status, prop_firm_registration.created_at AS prop_firm_registration_created_at, prop_firm_registration.updated_at AS prop_firm_registration_updated_at 
-FROM prop_firm_registration 
-WHERE prop_firm_registration.user_id IN (?)
-2025-12-13 17:22:02,065 INFO sqlalchemy.engine.Engine [cached since 0.7013s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:02,074 INFO sqlalchemy.engine.Engine SELECT user_discount.user_id AS user_discount_user_id, user_discount.id AS user_discount_id, user_discount.discount_id AS user_discount_discount_id, user_discount.discount_code AS user_discount_discount_code, user_discount.created_at AS user_discount_created_at, user_discount.updated_at AS user_discount_updated_at 
-FROM user_discount 
-WHERE user_discount.user_id IN (?)
-2025-12-13 17:22:02,075 INFO sqlalchemy.engine.Engine [cached since 0.6981s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:02,085 INFO sqlalchemy.engine.Engine SELECT prop_firm_registration.id, prop_firm_registration.user_id, prop_firm_registration.login_id, prop_firm_registration.password, prop_firm_registration.propfirm_name, prop_firm_registration.propfirm_website_link, prop_firm_registration.server_name, prop_firm_registration.server_type, prop_firm_registration.challenges_step, prop_firm_registration.propfirm_account_cost, prop_firm_registration.account_size, prop_firm_registration.account_phases, prop_firm_registration.trading_platform, prop_firm_registration.propfirm_rules, prop_firm_registration.whatsapp_no, prop_firm_registration.telegram_username, prop_firm_registration.account_status, prop_firm_registration.created_at, prop_firm_registration.updated_at 
-FROM prop_firm_registration 
-WHERE prop_firm_registration.user_id = ? AND prop_firm_registration.account_status = ?
-2025-12-13 17:22:02,087 INFO sqlalchemy.engine.Engine [generated in 0.00240s] ('a700b774fb8a49cfb0674b5d62afc139', 'pending')
-INFO:     127.0.0.1:41478 - "GET /api/v1/prop-firm/?status=pending HTTP/1.1" 200 OK
-2025-12-13 17:22:02,093 INFO sqlalchemy.engine.Engine ROLLBACK
-2025-12-13 17:22:02,103 INFO sqlalchemy.engine.Engine BEGIN (implicit)
-2025-12-13 17:22:02,104 INFO sqlalchemy.engine.Engine SELECT admin.id, admin.email, admin.name, admin.password, admin."Status", admin.email_verified, admin.created_at, admin.updated_at 
+2026-01-17 16:10:06,617 INFO sqlalchemy.engine.Engine [generated in 0.00024s] ('3ae05fd1b79a41f6a7880412a46f1bea',)
+2026-01-17 16:10:06,619 INFO sqlalchemy.engine.Engine SELECT global_affiliate_settings.id, global_affiliate_settings.default_commission_rate, global_affiliate_settings.minimum_withdrawal_amount, global_affiliate_settings.is_program_enabled, global_affiliate_settings.updated_at 
+FROM global_affiliate_settings
+2026-01-17 16:10:06,620 INFO sqlalchemy.engine.Engine [generated in 0.00061s] ()
+2026-01-17 16:10:06,622 - app - INFO - Request: GET /api/v1/admin/affiliates/settings/global - Status: 200 - Duration: 7.69ms
+INFO:     127.0.0.1:60410 - "GET /api/v1/admin/affiliates/settings/global HTTP/1.1" 200 OK
+2026-01-17 16:10:06,622 INFO sqlalchemy.engine.Engine ROLLBACK
+2026-01-17 16:10:06,630 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-01-17 16:10:06,630 INFO sqlalchemy.engine.Engine SELECT admin.id, admin.email, admin.name, admin.password, admin."Status", admin.email_verified, admin.created_at, admin.updated_at 
 FROM admin 
 WHERE admin.id = ?
-2025-12-13 17:22:02,105 INFO sqlalchemy.engine.Engine [cached since 0.117s ago] ('a67644c85d914a35bb28f47937ccd75e',)
-2025-12-13 17:22:02,111 INFO sqlalchemy.engine.Engine SELECT count(user.id) AS count_1 
-FROM user
-2025-12-13 17:22:02,111 INFO sqlalchemy.engine.Engine [generated in 0.00053s] ()
-2025-12-13 17:22:02,115 INFO sqlalchemy.engine.Engine SELECT count(payment.id) AS count_1 
-FROM payment
-2025-12-13 17:22:02,115 INFO sqlalchemy.engine.Engine [generated in 0.00039s] ()
-2025-12-13 17:22:02,117 INFO sqlalchemy.engine.Engine SELECT count(transactions.id) AS count_1 
-FROM transactions
-2025-12-13 17:22:02,118 INFO sqlalchemy.engine.Engine [generated in 0.00056s] ()
-2025-12-13 17:22:02,120 INFO sqlalchemy.engine.Engine SELECT count(prop_firm_registration.id) AS count_1 
-FROM prop_firm_registration
-2025-12-13 17:22:02,120 INFO sqlalchemy.engine.Engine [generated in 0.00040s] ()
-2025-12-13 17:22:02,124 INFO sqlalchemy.engine.Engine SELECT count(prop_firm_registration.id) AS count_1 
-FROM prop_firm_registration 
-WHERE prop_firm_registration.account_status = ?
-2025-12-13 17:22:02,124 INFO sqlalchemy.engine.Engine [generated in 0.00096s] ('pending',)
-2025-12-13 17:22:02,126 INFO sqlalchemy.engine.Engine SELECT count(prop_firm_registration.id) AS count_1 
-FROM prop_firm_registration 
-WHERE prop_firm_registration.account_status = ?
-2025-12-13 17:22:02,126 INFO sqlalchemy.engine.Engine [cached since 0.003085s ago] ('in_progress',)
-2025-12-13 17:22:02,129 INFO sqlalchemy.engine.Engine SELECT count(prop_firm_registration.id) AS count_1 
-FROM prop_firm_registration 
-WHERE prop_firm_registration.account_status = ?
-2025-12-13 17:22:02,129 INFO sqlalchemy.engine.Engine [cached since 0.005955s ago] ('passed',)
-2025-12-13 17:22:02,131 INFO sqlalchemy.engine.Engine SELECT count(prop_firm_registration.id) AS count_1 
-FROM prop_firm_registration 
-WHERE prop_firm_registration.account_status = ?
-2025-12-13 17:22:02,131 INFO sqlalchemy.engine.Engine [cached since 0.007997s ago] ('failed',)
-INFO:     127.0.0.1:41478 - "GET /api/v1/admin/stats HTTP/1.1" 200 OK
-2025-12-13 17:22:02,133 INFO sqlalchemy.engine.Engine ROLLBACK
-2025-12-13 17:22:02,140 INFO sqlalchemy.engine.Engine BEGIN (implicit)
-2025-12-13 17:22:02,142 INFO sqlalchemy.engine.Engine SELECT user.id, user.email, user.name, user.password, user."Status", user.referral_code, user.email_verified, user.created_at, user.updated_at, user.referred_by 
-FROM user 
-WHERE user.id = ?
-2025-12-13 17:22:02,143 INFO sqlalchemy.engine.Engine [cached since 0.8362s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:02,151 INFO sqlalchemy.engine.Engine SELECT payment.user_id AS payment_user_id, payment.id AS payment_id, payment.card_name AS payment_card_name, payment.card_number AS payment_card_number, payment.card_expiry_date AS payment_card_expiry_date, payment.card_type AS payment_card_type, payment.card_cvv AS payment_card_cvv, payment.created_at AS payment_created_at, payment.updated_at AS payment_updated_at 
-FROM payment 
-WHERE payment.user_id IN (?)
-2025-12-13 17:22:02,152 INFO sqlalchemy.engine.Engine [cached since 0.8268s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:02,159 INFO sqlalchemy.engine.Engine SELECT transactions.users_id AS transactions_users_id, transactions.id AS transactions_id, transactions.type AS transactions_type, transactions.amount_cents AS transactions_amount_cents, transactions.status AS transactions_status, transactions.reference AS transactions_reference, transactions.created_at AS transactions_created_at, transactions.updated_at AS transactions_updated_at 
-FROM transactions 
-WHERE transactions.users_id IN (?)
-2025-12-13 17:22:02,160 INFO sqlalchemy.engine.Engine [cached since 0.8184s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:02,167 INFO sqlalchemy.engine.Engine SELECT prop_firm_registration.user_id AS prop_firm_registration_user_id, prop_firm_registration.id AS prop_firm_registration_id, prop_firm_registration.login_id AS prop_firm_registration_login_id, prop_firm_registration.password AS prop_firm_registration_password, prop_firm_registration.propfirm_name AS prop_firm_registration_propfirm_name, prop_firm_registration.propfirm_website_link AS prop_firm_registration_propfirm_website_link, prop_firm_registration.server_name AS prop_firm_registration_server_name, prop_firm_registration.server_type AS prop_firm_registration_server_type, prop_firm_registration.challenges_step AS prop_firm_registration_challenges_step, prop_firm_registration.propfirm_account_cost AS prop_firm_registration_propfirm_account_cost, prop_firm_registration.account_size AS prop_firm_registration_account_size, prop_firm_registration.account_phases AS prop_firm_registration_account_phases, prop_firm_registration.trading_platform AS prop_firm_registration_trading_platform, prop_firm_registration.propfirm_rules AS prop_firm_registration_propfirm_rules, prop_firm_registration.whatsapp_no AS prop_firm_registration_whatsapp_no, prop_firm_registration.telegram_username AS prop_firm_registration_telegram_username, prop_firm_registration.account_status AS prop_firm_registration_account_status, prop_firm_registration.created_at AS prop_firm_registration_created_at, prop_firm_registration.updated_at AS prop_firm_registration_updated_at 
-FROM prop_firm_registration 
-WHERE prop_firm_registration.user_id IN (?)
-2025-12-13 17:22:02,167 INFO sqlalchemy.engine.Engine [cached since 0.8042s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:02,170 INFO sqlalchemy.engine.Engine SELECT user_discount.user_id AS user_discount_user_id, user_discount.id AS user_discount_id, user_discount.discount_id AS user_discount_discount_id, user_discount.discount_code AS user_discount_discount_code, user_discount.created_at AS user_discount_created_at, user_discount.updated_at AS user_discount_updated_at 
-FROM user_discount 
-WHERE user_discount.user_id IN (?)
-2025-12-13 17:22:02,171 INFO sqlalchemy.engine.Engine [cached since 0.794s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:02,183 INFO sqlalchemy.engine.Engine SELECT prop_firm_registration.id, prop_firm_registration.user_id, prop_firm_registration.login_id, prop_firm_registration.password, prop_firm_registration.propfirm_name, prop_firm_registration.propfirm_website_link, prop_firm_registration.server_name, prop_firm_registration.server_type, prop_firm_registration.challenges_step, prop_firm_registration.propfirm_account_cost, prop_firm_registration.account_size, prop_firm_registration.account_phases, prop_firm_registration.trading_platform, prop_firm_registration.propfirm_rules, prop_firm_registration.whatsapp_no, prop_firm_registration.telegram_username, prop_firm_registration.account_status, prop_firm_registration.created_at, prop_firm_registration.updated_at 
-FROM prop_firm_registration 
-WHERE prop_firm_registration.user_id = ?
-2025-12-13 17:22:02,183 INFO sqlalchemy.engine.Engine [generated in 0.00069s] ('a700b774fb8a49cfb0674b5d62afc139',)
-INFO:     127.0.0.1:41478 - "GET /api/v1/prop-firm/ HTTP/1.1" 200 OK
-2025-12-13 17:22:02,189 INFO sqlalchemy.engine.Engine ROLLBACK
-2025-12-13 17:22:02,201 INFO sqlalchemy.engine.Engine BEGIN (implicit)
-2025-12-13 17:22:02,201 INFO sqlalchemy.engine.Engine SELECT admin.id, admin.email, admin.name, admin.password, admin."Status", admin.email_verified, admin.created_at, admin.updated_at 
+2026-01-17 16:10:06,631 INFO sqlalchemy.engine.Engine [cached since 0.01384s ago] ('3ae05fd1b79a41f6a7880412a46f1bea',)
+2026-01-17 16:10:06,632 INFO sqlalchemy.engine.Engine SELECT global_affiliate_settings.id, global_affiliate_settings.default_commission_rate, global_affiliate_settings.minimum_withdrawal_amount, global_affiliate_settings.is_program_enabled, global_affiliate_settings.updated_at 
+FROM global_affiliate_settings
+2026-01-17 16:10:06,632 INFO sqlalchemy.engine.Engine [cached since 0.01334s ago] ()
+2026-01-17 16:10:06,636 INFO sqlalchemy.engine.Engine UPDATE global_affiliate_settings SET default_commission_rate=?, minimum_withdrawal_amount=? WHERE global_affiliate_settings.id = ?
+2026-01-17 16:10:06,636 INFO sqlalchemy.engine.Engine [generated in 0.00072s] (0.03, 50.0, '289b577b586f4172af8b72d279d64cb7')
+2026-01-17 16:10:06,642 INFO sqlalchemy.engine.Engine COMMIT
+2026-01-17 16:10:06,646 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-01-17 16:10:06,649 INFO sqlalchemy.engine.Engine SELECT global_affiliate_settings.id, global_affiliate_settings.default_commission_rate, global_affiliate_settings.minimum_withdrawal_amount, global_affiliate_settings.is_program_enabled, global_affiliate_settings.updated_at 
+FROM global_affiliate_settings 
+WHERE global_affiliate_settings.id = ?
+2026-01-17 16:10:06,649 INFO sqlalchemy.engine.Engine [generated in 0.00031s] ('289b577b586f4172af8b72d279d64cb7',)
+2026-01-17 16:10:06,651 INFO sqlalchemy.engine.Engine SELECT global_affiliate_settings.id, global_affiliate_settings.default_commission_rate, global_affiliate_settings.minimum_withdrawal_amount, global_affiliate_settings.is_program_enabled, global_affiliate_settings.updated_at 
+FROM global_affiliate_settings
+2026-01-17 16:10:06,652 INFO sqlalchemy.engine.Engine [cached since 0.03256s ago] ()
+2026-01-17 16:10:06,653 - app - INFO - Request: PATCH /api/v1/admin/affiliates/settings/global - Status: 200 - Duration: 26.35ms
+INFO:     127.0.0.1:60414 - "PATCH /api/v1/admin/affiliates/settings/global HTTP/1.1" 200 OK
+2026-01-17 16:10:06,654 INFO sqlalchemy.engine.Engine ROLLBACK
+2026-01-17 16:10:06,664 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-01-17 16:10:06,665 INFO sqlalchemy.engine.Engine SELECT admin.id, admin.email, admin.name, admin.password, admin."Status", admin.email_verified, admin.created_at, admin.updated_at 
 FROM admin 
 WHERE admin.id = ?
-2025-12-13 17:22:02,202 INFO sqlalchemy.engine.Engine [cached since 0.2138s ago] ('a67644c85d914a35bb28f47937ccd75e',)
-2025-12-13 17:22:02,205 INFO sqlalchemy.engine.Engine SELECT prop_firm_registration.id, prop_firm_registration.user_id, prop_firm_registration.login_id, prop_firm_registration.password, prop_firm_registration.propfirm_name, prop_firm_registration.propfirm_website_link, prop_firm_registration.server_name, prop_firm_registration.server_type, prop_firm_registration.challenges_step, prop_firm_registration.propfirm_account_cost, prop_firm_registration.account_size, prop_firm_registration.account_phases, prop_firm_registration.trading_platform, prop_firm_registration.propfirm_rules, prop_firm_registration.whatsapp_no, prop_firm_registration.telegram_username, prop_firm_registration.account_status, prop_firm_registration.created_at, prop_firm_registration.updated_at 
-FROM prop_firm_registration 
-WHERE prop_firm_registration.id = ?
-2025-12-13 17:22:02,205 INFO sqlalchemy.engine.Engine [generated in 0.00070s] ('234bb3282d7d4b448743d0221ef26776',)
-2025-12-13 17:22:02,208 INFO sqlalchemy.engine.Engine COMMIT
-2025-12-13 17:22:02,210 INFO sqlalchemy.engine.Engine BEGIN (implicit)
-2025-12-13 17:22:02,210 INFO sqlalchemy.engine.Engine SELECT prop_firm_registration.id, prop_firm_registration.user_id, prop_firm_registration.login_id, prop_firm_registration.password, prop_firm_registration.propfirm_name, prop_firm_registration.propfirm_website_link, prop_firm_registration.server_name, prop_firm_registration.server_type, prop_firm_registration.challenges_step, prop_firm_registration.propfirm_account_cost, prop_firm_registration.account_size, prop_firm_registration.account_phases, prop_firm_registration.trading_platform, prop_firm_registration.propfirm_rules, prop_firm_registration.whatsapp_no, prop_firm_registration.telegram_username, prop_firm_registration.account_status, prop_firm_registration.created_at, prop_firm_registration.updated_at 
-FROM prop_firm_registration 
-WHERE prop_firm_registration.id = ?
-2025-12-13 17:22:02,210 INFO sqlalchemy.engine.Engine [cached since 0.7733s ago] ('234bb3282d7d4b448743d0221ef26776',)
-INFO:     127.0.0.1:41478 - "PUT /api/v1/admin/prop-firm/234bb328-2d7d-4b44-8743-d0221ef26776 HTTP/1.1" 200 OK
-2025-12-13 17:22:02,212 INFO sqlalchemy.engine.Engine ROLLBACK
-2025-12-13 17:22:02,222 INFO sqlalchemy.engine.Engine BEGIN (implicit)
-2025-12-13 17:22:02,224 INFO sqlalchemy.engine.Engine SELECT user.id, user.email, user.name, user.password, user."Status", user.referral_code, user.email_verified, user.created_at, user.updated_at, user.referred_by 
-FROM user 
-WHERE user.id = ?
-2025-12-13 17:22:02,225 INFO sqlalchemy.engine.Engine [cached since 0.9178s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:02,229 INFO sqlalchemy.engine.Engine SELECT payment.user_id AS payment_user_id, payment.id AS payment_id, payment.card_name AS payment_card_name, payment.card_number AS payment_card_number, payment.card_expiry_date AS payment_card_expiry_date, payment.card_type AS payment_card_type, payment.card_cvv AS payment_card_cvv, payment.created_at AS payment_created_at, payment.updated_at AS payment_updated_at 
-FROM payment 
-WHERE payment.user_id IN (?)
-2025-12-13 17:22:02,230 INFO sqlalchemy.engine.Engine [cached since 0.9046s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:02,235 INFO sqlalchemy.engine.Engine SELECT transactions.users_id AS transactions_users_id, transactions.id AS transactions_id, transactions.type AS transactions_type, transactions.amount_cents AS transactions_amount_cents, transactions.status AS transactions_status, transactions.reference AS transactions_reference, transactions.created_at AS transactions_created_at, transactions.updated_at AS transactions_updated_at 
-FROM transactions 
-WHERE transactions.users_id IN (?)
-2025-12-13 17:22:02,236 INFO sqlalchemy.engine.Engine [cached since 0.8942s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:02,240 INFO sqlalchemy.engine.Engine SELECT prop_firm_registration.user_id AS prop_firm_registration_user_id, prop_firm_registration.id AS prop_firm_registration_id, prop_firm_registration.login_id AS prop_firm_registration_login_id, prop_firm_registration.password AS prop_firm_registration_password, prop_firm_registration.propfirm_name AS prop_firm_registration_propfirm_name, prop_firm_registration.propfirm_website_link AS prop_firm_registration_propfirm_website_link, prop_firm_registration.server_name AS prop_firm_registration_server_name, prop_firm_registration.server_type AS prop_firm_registration_server_type, prop_firm_registration.challenges_step AS prop_firm_registration_challenges_step, prop_firm_registration.propfirm_account_cost AS prop_firm_registration_propfirm_account_cost, prop_firm_registration.account_size AS prop_firm_registration_account_size, prop_firm_registration.account_phases AS prop_firm_registration_account_phases, prop_firm_registration.trading_platform AS prop_firm_registration_trading_platform, prop_firm_registration.propfirm_rules AS prop_firm_registration_propfirm_rules, prop_firm_registration.whatsapp_no AS prop_firm_registration_whatsapp_no, prop_firm_registration.telegram_username AS prop_firm_registration_telegram_username, prop_firm_registration.account_status AS prop_firm_registration_account_status, prop_firm_registration.created_at AS prop_firm_registration_created_at, prop_firm_registration.updated_at AS prop_firm_registration_updated_at 
-FROM prop_firm_registration 
-WHERE prop_firm_registration.user_id IN (?)
-2025-12-13 17:22:02,241 INFO sqlalchemy.engine.Engine [cached since 0.8781s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:02,246 INFO sqlalchemy.engine.Engine SELECT user_discount.user_id AS user_discount_user_id, user_discount.id AS user_discount_id, user_discount.discount_id AS user_discount_discount_id, user_discount.discount_code AS user_discount_discount_code, user_discount.created_at AS user_discount_created_at, user_discount.updated_at AS user_discount_updated_at 
-FROM user_discount 
-WHERE user_discount.user_id IN (?)
-2025-12-13 17:22:02,246 INFO sqlalchemy.engine.Engine [cached since 0.8692s ago] ('a700b774fb8a49cfb0674b5d62afc139',)
-2025-12-13 17:22:02,255 INFO sqlalchemy.engine.Engine SELECT notification.id, notification.user_id, notification.admin_id, notification.title, notification.message, notification.type, notification.created_at, notification.updated_at 
-FROM notification 
-WHERE notification.user_id = ? ORDER BY notification.created_at DESC
-2025-12-13 17:22:02,256 INFO sqlalchemy.engine.Engine [generated in 0.00067s] ('a700b774fb8a49cfb0674b5d62afc139',)
-INFO:     127.0.0.1:41478 - "GET /api/v1/notifications/my-notifications HTTP/1.1" 200 OK
-2025-12-13 17:22:02,261 INFO sqlalchemy.engine.Engine ROLLBACK
-INFO:     127.0.0.1:50360 - "GET /docs HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50360 - "GET /openapi.json HTTP/1.1" 200 OK
+2026-01-17 16:10:06,665 INFO sqlalchemy.engine.Engine [cached since 0.04815s ago] ('3ae05fd1b79a41f6a7880412a46f1bea',)
+2026-01-17 16:10:06,666 INFO sqlalchemy.engine.Engine SELECT global_affiliate_settings.id, global_affiliate_settings.default_commission_rate, global_affiliate_settings.minimum_withdrawal_amount, global_affiliate_settings.is_program_enabled, global_affiliate_settings.updated_at 
+FROM global_affiliate_settings
+2026-01-17 16:10:06,666 INFO sqlalchemy.engine.Engine [cached since 0.04712s ago] ()
+2026-01-17 16:10:06,667 - app - INFO - Request: GET /api/v1/admin/affiliates/settings/global - Status: 200 - Duration: 4.99ms
+INFO:     127.0.0.1:60426 - "GET /api/v1/admin/affiliates/settings/global HTTP/1.1" 200 OK
+2026-01-17 16:10:06,668 INFO sqlalchemy.engine.Engine ROLLBACK
+2026-01-17 16:12:56,903 - app - INFO - Request: GET /docs - Status: 200 - Duration: 1.47ms
+INFO:     127.0.0.1:40888 - "GET /docs HTTP/1.1" 200 OK
+2026-01-17 16:12:57,969 - app - INFO - Request: GET /openapi.json - Status: 200 - Duration: 208.78ms
+INFO:     127.0.0.1:40888 - "GET /openapi.json HTTP/1.1" 200 OK
 INFO:     Shutting down
 INFO:     Waiting for application shutdown.
+2026-01-17 16:15:01,965 - app - INFO - Shutting down application...
 INFO:     Application shutdown complete.
-INFO:     Finished server process [540825]
+INFO:     Finished server process [671352]

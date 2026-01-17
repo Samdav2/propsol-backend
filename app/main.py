@@ -15,7 +15,7 @@ except ImportError as e:
 try:
     from app.db.session import init_db
     import app.models
-    from app.api.v1.endpoints import auth, users, admin, payments, transactions, prop_firm, discounts, notification, support, crypto_payments, wallet
+    from app.api.v1.endpoints import auth, users, admin, payments, transactions, prop_firm, discounts, notification, support, crypto_payments, wallet, affiliate_admin
     from fastapi.middleware.cors import CORSMiddleware
     from fastapi.middleware.trustedhost import TrustedHostMiddleware
     from fastapi.middleware.gzip import GZipMiddleware
@@ -84,6 +84,7 @@ app.include_router(notification.router, prefix="/api/v1/notifications", tags=["n
 app.include_router(support.router, prefix="/api/v1/support", tags=["support"])
 app.include_router(crypto_payments.router, prefix="/api/v1/crypto-payments", tags=["crypto-payments"])
 app.include_router(wallet.router, prefix="/api/v1/wallet", tags=["wallet"])
+app.include_router(affiliate_admin.router, prefix="/api/v1/admin/affiliates", tags=["admin-affiliates"])
 
 
 @app.get("/")

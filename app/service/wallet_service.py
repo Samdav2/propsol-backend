@@ -81,8 +81,31 @@ class WalletService:
         # Get or create referrer's wallet
         wallet = await self.wallet_repo.get_or_create(referrer.id)
 
-        # Calculate commission (2% of purchase)
-        commission = purchase_amount * COMMISSION_RATE
+        # Check for custom commission rate
+        from app.repository.affiliate_settings_repo import AffiliateSettingsRepository
+        from app.repository.global_settings_repo import GlobalSettingsRepository
+
+        settings_repo = AffiliateSettingsRepository(self.session)
+        global_repo = GlobalSettingsRepository(self.session)
+
+        user_settings = await settings_repo.get_by_user_id(referrer.id)
+        global_settings = await global_repo.get_settings()
+
+        # Check if program is enabled globally
+        if not global_settings.is_program_enabled:
+            return None
+
+        # Check if affiliate is enabled specifically
+        if user_settings and not user_settings.is_affiliate_enabled:
+            return None
+
+        # Determine rate
+        rate = global_settings.default_commission_rate
+        if user_settings and user_settings.custom_commission_rate is not None:
+            rate = user_settings.custom_commission_rate
+
+        # Calculate commission
+        commission = purchase_amount * rate
 
         # Determine status based on pass type
         if pass_type == PassType.standard_pass:

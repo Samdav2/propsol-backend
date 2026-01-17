@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdrawal Update</title>
+</head>
+
+<body
+    style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f5f5f5;">
+    <div
+        style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); padding: 30px; border-radius: 10px 10px 0 0; text-align: center;">
+        <h1 style="color: #4fc3f7; margin: 0; font-size: 28px;">PropSol</h1>
+        <p style="color: #aaa; margin: 10px 0 0 0;">Withdrawal Update</p>
+    </div>
+
+    <div style="background: #fff; padding: 30px; border-radius: 0 0 10px 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <h2 style="color: #1a1a2e; margin-top: 0;">Hello {{ name }},</h2>
+
+        <p>Your withdrawal request has been updated. Here are the details:</p>
+
+        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee; color: #666;">Amount:</td>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold; text-align: right;">
+                        ${{ amount }}</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee; color: #666;">Payment Method:</td>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #eee; text-align: right;">{{ payment_method }}
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 0; color: #666;">Status:</td>
+                    <td
+                        style="padding: 10px 0; text-align: right; font-weight: bold; color: {% if status == 'completed' %}#4caf50{% elif status == 'rejected' %}#f44336{% else %}#ff9800{% endif %};">
+                        {{ status | upper }}</td>
+                </tr>
+            </table>
+        </div>
+
+        {% if status == 'completed' %}
+        <div style="background: #e8f5e9; border-left: 4px solid #4caf50; padding: 15px; margin: 20px 0;">
+            <p style="margin: 0; color: #2e7d32;">
+                <strong>✓ Withdrawal Completed!</strong><br>
+                Your funds have been sent to your selected payment method.
+            </p>
+        </div>
+        {% elif status == 'rejected' %}
+        <div style="background: #ffebee; border-left: 4px solid #f44336; padding: 15px; margin: 20px 0;">
+            <p style="margin: 0; color: #c62828;">
+                <strong>✗ Withdrawal Rejected</strong><br>
+                Your funds have been returned to your available balance.
+            </p>
+        </div>
+        {% endif %}
+
+        {% if admin_notes %}
+        <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <p style="margin: 0; color: #666;"><strong>Note from admin:</strong></p>
+            <p style="margin: 10px 0 0 0;">{{ admin_notes }}</p>
+        </div>
+        {% endif %}
+
+        <p>If you have any questions, please contact our support team.</p>
+
+        <p style="margin-top: 30px; color: #666;">
+            Best regards,<br>
+            <strong>The PropSol Team</strong>
+        </p>
+    </div>
+
+    <div style="text-align: center; padding: 20px; color: #666; font-size: 12px;">
+        <p>© 2026 PropSol. All rights reserved.</p>
+    </div>
+</body>
+
+</html>

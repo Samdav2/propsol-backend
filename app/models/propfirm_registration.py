@@ -9,7 +9,9 @@ from uuid import UUID
 from enum import Enum
 
 
-
+class PassType(str, Enum):
+    standard_pass = "standard_pass"
+    guaranteed_pass = "guaranteed_pass"
 
 
 class AccountStatus(str, Enum):
@@ -45,6 +47,7 @@ class PropFirmRegistration(SQLModel, table=True):
     propfirm_rules: str = Field(nullable=False)
     whatsapp_no: str = Field(nullable=False)
     telegram_username: str = Field(nullable=False)
+    pass_type: PassType = Field(default=PassType.standard_pass, nullable=False)
     account_status: AccountStatus = Field(default=AccountStatus.pending, nullable=False)
     payment_status: PaymentStatus = Field(default=PaymentStatus.pending, nullable=False)
     created_at: datetime = Field(

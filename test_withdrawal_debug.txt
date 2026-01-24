@@ -1,0 +1,160 @@
+--- Testing Withdrawal Request Error ---
+2026-01-23 23:33:05,551 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-01-23 23:33:05,596 INFO sqlalchemy.engine.Engine SELECT user.id, user.email, user.name, user.password, user."Status", user.referral_code, user.email_verified, user.created_at, user.updated_at, user.referred_by 
+FROM user
+ LIMIT ? OFFSET ?
+2026-01-23 23:33:05,596 INFO sqlalchemy.engine.Engine [generated in 0.00036s] (1, 0)
+User: referrer_9ed3ec34-9dad-493b-a1f1-712b0a06efe1@example.com
+2026-01-23 23:33:05,604 INFO sqlalchemy.engine.Engine SELECT wallet.id, wallet.user_id, wallet.available_balance, wallet.locked_balance, wallet.total_withdrawn, wallet.created_at, wallet.updated_at 
+FROM wallet 
+WHERE wallet.user_id = ?
+2026-01-23 23:33:05,604 INFO sqlalchemy.engine.Engine [generated in 0.00049s] ('21b4de9bfbae49bdbdaa539feb1b7fd3',)
+2026-01-23 23:33:05,606 INFO sqlalchemy.engine.Engine SELECT wallet.id, wallet.user_id, wallet.available_balance, wallet.locked_balance, wallet.total_withdrawn, wallet.created_at, wallet.updated_at 
+FROM wallet 
+WHERE wallet.id = ?
+2026-01-23 23:33:05,606 INFO sqlalchemy.engine.Engine [generated in 0.00023s] ('688fd489dfec470085fe4fae9f935932',)
+2026-01-23 23:33:05,609 INFO sqlalchemy.engine.Engine UPDATE wallet SET available_balance=?, updated_at=? WHERE wallet.id = ?
+2026-01-23 23:33:05,610 INFO sqlalchemy.engine.Engine [generated in 0.00030s] (800.0, '2026-01-23 22:33:05.607507', '688fd489dfec470085fe4fae9f935932')
+2026-01-23 23:33:05,611 INFO sqlalchemy.engine.Engine COMMIT
+2026-01-23 23:33:05,614 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-01-23 23:33:05,616 INFO sqlalchemy.engine.Engine SELECT wallet.id, wallet.user_id, wallet.available_balance, wallet.locked_balance, wallet.total_withdrawn, wallet.created_at, wallet.updated_at 
+FROM wallet 
+WHERE wallet.id = ?
+2026-01-23 23:33:05,616 INFO sqlalchemy.engine.Engine [generated in 0.00027s] ('688fd489dfec470085fe4fae9f935932',)
+Added balance to wallet.
+Requesting withdrawal...
+2026-01-23 23:33:05,618 INFO sqlalchemy.engine.Engine SELECT user.id AS user_id, user.email AS user_email, user.name AS user_name, user.password AS user_password, user."Status" AS "user_Status", user.referral_code AS user_referral_code, user.email_verified AS user_email_verified, user.created_at AS user_created_at, user.updated_at AS user_updated_at, user.referred_by AS user_referred_by 
+FROM user 
+WHERE user.id = ?
+2026-01-23 23:33:05,619 INFO sqlalchemy.engine.Engine [generated in 0.00024s] ('21b4de9bfbae49bdbdaa539feb1b7fd3',)
+Traceback (most recent call last):
+  File "/home/rehack/PycharmProjects/solpro_backend/scripts/test_withdrawal_error.py", line 55, in main
+    user_id=user.id,
+            ^^^^^^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/attributes.py", line 569, in __get__
+    return self.impl.get(state, dict_)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/attributes.py", line 1096, in get
+    value = self._fire_loader_callables(state, key, passive)
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/attributes.py", line 1126, in _fire_loader_callables
+    return state._load_expired(state, passive)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/state.py", line 803, in _load_expired
+    self.manager.expired_attribute_loader(self, toload, passive)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/loading.py", line 1674, in load_scalar_attributes
+    result = load_on_ident(
+        session,
+    ...<4 lines>...
+        no_autoflush=no_autoflush,
+    )
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/loading.py", line 510, in load_on_ident
+    return load_on_pk_identity(
+        session,
+    ...<11 lines>...
+        is_user_refresh=is_user_refresh,
+    )
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/loading.py", line 695, in load_on_pk_identity
+    session.execute(
+    ~~~~~~~~~~~~~~~^
+        q,
+        ^^
+    ...<2 lines>...
+        bind_arguments=bind_arguments,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlmodel/orm/session.py", line 144, in execute
+    return super().execute(
+           ~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<4 lines>...
+        conn,
+        ^^^^^
+    )
+    ^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2358, in _handle_dbapi_exception
+    raise exc_info[1].with_traceback(exc_info[2])
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/dialects/sqlite/aiosqlite.py", line 180, in execute
+    self._adapt_connection._handle_exception(error)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/dialects/sqlite/aiosqlite.py", line 340, in _handle_exception
+    raise error
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/dialects/sqlite/aiosqlite.py", line 157, in execute
+    _cursor: AsyncIODBAPICursor = self.await_(self._connection.cursor())  # type: ignore[arg-type] # noqa: E501
+                                  ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 123, in await_only
+    raise exc.MissingGreenlet(
+    ...<2 lines>...
+    )
+sqlalchemy.exc.MissingGreenlet: greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place? (Background on this error at: https://sqlalche.me/e/20/xd2s)
+Caught expected error: greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place? (Background on this error at: https://sqlalche.me/e/20/xd2s)
+2026-01-23 23:33:05,630 INFO sqlalchemy.engine.Engine ROLLBACK

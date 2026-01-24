@@ -1,0 +1,14 @@
+DEBUG: WalletRepository file: /home/rehack/PycharmProjects/solpro_backend/app/repository/wallet_repo.py
+--- Testing List Withdrawals (Enriched) ---
+2026-01-23 22:27:02,492 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-01-23 22:27:02,498 INFO sqlalchemy.engine.Engine SELECT count(*) AS count_1 
+FROM withdrawal_request 
+WHERE withdrawal_request.status = ?
+2026-01-23 22:27:02,499 INFO sqlalchemy.engine.Engine [generated in 0.00070s] ('pending',)
+2026-01-23 22:27:02,507 INFO sqlalchemy.engine.Engine SELECT withdrawal_request.id, withdrawal_request.wallet_id, withdrawal_request.amount, withdrawal_request.payment_method, withdrawal_request.bank_name, withdrawal_request.account_number, withdrawal_request.account_name, withdrawal_request.routing_number, withdrawal_request.swift_code, withdrawal_request.crypto_wallet_address, withdrawal_request.crypto_network, withdrawal_request.crypto_currency, withdrawal_request.paypal_email, withdrawal_request.status, withdrawal_request.admin_notes, withdrawal_request.created_at, withdrawal_request.processed_at, withdrawal_request.batch_withdrawal_id, withdrawal_request.payout_id, withdrawal_request.external_status, withdrawal_request.rejection_reason, user.id AS id_1, user.email, user.name, user.password, user."Status", user.referral_code, user.email_verified, user.created_at AS created_at_1, user.updated_at, user.referred_by 
+FROM withdrawal_request JOIN wallet ON withdrawal_request.wallet_id = wallet.id JOIN user ON wallet.user_id = user.id 
+WHERE withdrawal_request.status = ? ORDER BY withdrawal_request.created_at DESC
+ LIMIT ? OFFSET ?
+2026-01-23 22:27:02,507 INFO sqlalchemy.engine.Engine [generated in 0.00049s] ('pending', 10, 0)
+Total count: 0
+2026-01-23 22:27:02,509 INFO sqlalchemy.engine.Engine ROLLBACK

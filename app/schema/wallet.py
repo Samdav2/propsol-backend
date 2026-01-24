@@ -134,3 +134,20 @@ class WithdrawalStatusUpdate(BaseModel):
     """Admin update withdrawal status"""
     status: WithdrawalStatus
     admin_notes: Optional[str] = None
+    rejection_reason: Optional[str] = None
+
+
+class AdminWithdrawalResponse(WithdrawalResponse):
+    """Withdrawal response with user details for admin"""
+    user_name: str
+    user_email: str
+    rejection_reason: Optional[str] = None
+
+    class Config:
+        from_attributes = True
+
+
+class AdminWithdrawalListResponse(BaseModel):
+    """List of withdrawals for admin"""
+    withdrawals: List[AdminWithdrawalResponse]
+    total_count: int

@@ -1,0 +1,362 @@
+DEBUG: WalletRepository file: /home/rehack/PycharmProjects/solpro_backend/app/repository/wallet_repo.py
+--- Testing List Withdrawals (Enriched) ---
+2026-01-23 21:58:58,086 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-01-23 21:58:58,094 INFO sqlalchemy.engine.Engine SELECT count(*) AS count_1 
+FROM withdrawal_request 
+WHERE withdrawal_request.status = ?
+2026-01-23 21:58:58,095 INFO sqlalchemy.engine.Engine [generated in 0.00065s] ('pending',)
+2026-01-23 21:58:58,118 INFO sqlalchemy.engine.Engine SELECT withdrawal_request.id, withdrawal_request.wallet_id, withdrawal_request.amount, withdrawal_request.payment_method, withdrawal_request.bank_name, withdrawal_request.account_number, withdrawal_request.account_name, withdrawal_request.routing_number, withdrawal_request.swift_code, withdrawal_request.crypto_wallet_address, withdrawal_request.crypto_network, withdrawal_request.crypto_currency, withdrawal_request.paypal_email, withdrawal_request.status, withdrawal_request.admin_notes, withdrawal_request.created_at, withdrawal_request.processed_at, withdrawal_request.batch_withdrawal_id, withdrawal_request.payout_id, withdrawal_request.external_status, withdrawal_request.rejection_reason, user.id AS id_1, user.email, user.name, user.password, user."Status", user.referral_code, user.email_verified, user.created_at AS created_at_1, user.updated_at, user.referred_by 
+FROM withdrawal_request JOIN wallet ON withdrawal_request.wallet_id = wallet.id JOIN user ON wallet.user_id = user.id 
+WHERE withdrawal_request.status = ? ORDER BY withdrawal_request.created_at DESC
+ LIMIT ? OFFSET ?
+2026-01-23 21:58:58,119 INFO sqlalchemy.engine.Engine [generated in 0.00146s] ('pending', 10, 0)
+Total count: 1
+ - ID: f52f5b7f-00c0-4a8c-8ac3-aa3f36221b8c
+   Amount: $100.0
+   User: Samuel Dawodu (adoxop1@gmail.com)
+   Status: WithdrawalStatus.pending
+
+--- Testing Rejection Reason ---
+Rejecting withdrawal f52f5b7f-00c0-4a8c-8ac3-aa3f36221b8c...
+2026-01-23 21:58:58,138 INFO sqlalchemy.engine.Engine SELECT withdrawal_request.id, withdrawal_request.wallet_id, withdrawal_request.amount, withdrawal_request.payment_method, withdrawal_request.bank_name, withdrawal_request.account_number, withdrawal_request.account_name, withdrawal_request.routing_number, withdrawal_request.swift_code, withdrawal_request.crypto_wallet_address, withdrawal_request.crypto_network, withdrawal_request.crypto_currency, withdrawal_request.paypal_email, withdrawal_request.status, withdrawal_request.admin_notes, withdrawal_request.created_at, withdrawal_request.processed_at, withdrawal_request.batch_withdrawal_id, withdrawal_request.payout_id, withdrawal_request.external_status, withdrawal_request.rejection_reason 
+FROM withdrawal_request 
+WHERE withdrawal_request.id = ?
+2026-01-23 21:58:58,139 INFO sqlalchemy.engine.Engine [generated in 0.00064s] ('f52f5b7f00c04a8c8ac3aa3f36221b8c',)
+2026-01-23 21:58:58,151 INFO sqlalchemy.engine.Engine SELECT withdrawal_request.id, withdrawal_request.wallet_id, withdrawal_request.amount, withdrawal_request.payment_method, withdrawal_request.bank_name, withdrawal_request.account_number, withdrawal_request.account_name, withdrawal_request.routing_number, withdrawal_request.swift_code, withdrawal_request.crypto_wallet_address, withdrawal_request.crypto_network, withdrawal_request.crypto_currency, withdrawal_request.paypal_email, withdrawal_request.status, withdrawal_request.admin_notes, withdrawal_request.created_at, withdrawal_request.processed_at, withdrawal_request.batch_withdrawal_id, withdrawal_request.payout_id, withdrawal_request.external_status, withdrawal_request.rejection_reason 
+FROM withdrawal_request 
+WHERE id = ?
+2026-01-23 21:58:58,152 INFO sqlalchemy.engine.Engine [generated in 0.00129s] ('f52f5b7f-00c0-4a8c-8ac3-aa3f36221b8c',)
+2026-01-23 21:58:58,156 INFO sqlalchemy.engine.Engine SELECT withdrawal_request.id, withdrawal_request.wallet_id, withdrawal_request.amount, withdrawal_request.payment_method, withdrawal_request.bank_name, withdrawal_request.account_number, withdrawal_request.account_name, withdrawal_request.routing_number, withdrawal_request.swift_code, withdrawal_request.crypto_wallet_address, withdrawal_request.crypto_network, withdrawal_request.crypto_currency, withdrawal_request.paypal_email, withdrawal_request.status, withdrawal_request.admin_notes, withdrawal_request.created_at, withdrawal_request.processed_at, withdrawal_request.batch_withdrawal_id, withdrawal_request.payout_id, withdrawal_request.external_status, withdrawal_request.rejection_reason 
+FROM withdrawal_request 
+WHERE withdrawal_request.id = ?
+2026-01-23 21:58:58,157 INFO sqlalchemy.engine.Engine [cached since 0.01927s ago] ('f52f5b7f00c04a8c8ac3aa3f36221b8c',)
+2026-01-23 21:58:58,161 INFO sqlalchemy.engine.Engine SELECT withdrawal_request.id, withdrawal_request.wallet_id, withdrawal_request.amount, withdrawal_request.payment_method, withdrawal_request.bank_name, withdrawal_request.account_number, withdrawal_request.account_name, withdrawal_request.routing_number, withdrawal_request.swift_code, withdrawal_request.crypto_wallet_address, withdrawal_request.crypto_network, withdrawal_request.crypto_currency, withdrawal_request.paypal_email, withdrawal_request.status, withdrawal_request.admin_notes, withdrawal_request.created_at, withdrawal_request.processed_at, withdrawal_request.batch_withdrawal_id, withdrawal_request.payout_id, withdrawal_request.external_status, withdrawal_request.rejection_reason 
+FROM withdrawal_request 
+WHERE id = ?
+2026-01-23 21:58:58,163 INFO sqlalchemy.engine.Engine [cached since 0.0119s ago] ('f52f5b7f-00c0-4a8c-8ac3-aa3f36221b8c',)
+2026-01-23 21:58:58,168 INFO sqlalchemy.engine.Engine 
+            UPDATE withdrawal_request
+            SET status = ?,
+                admin_notes = ?,
+                rejection_reason = ?,
+                processed_at = ?
+            WHERE id = ?
+        
+2026-01-23 21:58:58,170 INFO sqlalchemy.engine.Engine [generated in 0.00162s] ('rejected', 'Test rejection', 'Invalid wallet address provided', datetime.datetime(2026, 1, 23, 20, 58, 58, 165762, tzinfo=datetime.timezone.utc), 'f52f5b7f-00c0-4a8c-8ac3-aa3f36221b8c')
+2026-01-23 21:58:58,172 INFO sqlalchemy.engine.Engine COMMIT
+2026-01-23 21:58:58,180 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2026-01-23 21:58:58,193 INFO sqlalchemy.engine.Engine SELECT withdrawal_request.id AS withdrawal_request_id, withdrawal_request.wallet_id AS withdrawal_request_wallet_id, withdrawal_request.amount AS withdrawal_request_amount, withdrawal_request.payment_method AS withdrawal_request_payment_method, withdrawal_request.bank_name AS withdrawal_request_bank_name, withdrawal_request.account_number AS withdrawal_request_account_number, withdrawal_request.account_name AS withdrawal_request_account_name, withdrawal_request.routing_number AS withdrawal_request_routing_number, withdrawal_request.swift_code AS withdrawal_request_swift_code, withdrawal_request.crypto_wallet_address AS withdrawal_request_crypto_wallet_address, withdrawal_request.crypto_network AS withdrawal_request_crypto_network, withdrawal_request.crypto_currency AS withdrawal_request_crypto_currency, withdrawal_request.paypal_email AS withdrawal_request_paypal_email, withdrawal_request.created_at AS withdrawal_request_created_at, withdrawal_request.batch_withdrawal_id AS withdrawal_request_batch_withdrawal_id, withdrawal_request.payout_id AS withdrawal_request_payout_id, withdrawal_request.external_status AS withdrawal_request_external_status 
+FROM withdrawal_request 
+WHERE withdrawal_request.id = ?
+2026-01-23 21:58:58,195 INFO sqlalchemy.engine.Engine [generated in 0.00259s] ('f52f5b7f00c04a8c8ac3aa3f36221b8c',)
+2026-01-23 21:58:58,197 INFO sqlalchemy.engine.Engine ROLLBACK
+Traceback (most recent call last):
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4427, in _flush
+    flush_context.execute()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+    ~~~~~~~~~~~^^^^^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self.mapper,
+        ^^^^^^^^^^^^
+        uow.states_for_mapper_hierarchy(self.mapper, False, False),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        uow,
+        ^^^^
+    )
+    ^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/persistence.py", line 85, in save_obj
+    _emit_update_statements(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        base_mapper,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        update,
+        ^^^^^^^
+    )
+    ^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/persistence.py", line 781, in _emit_update_statements
+    ) in groupby(
+         ~~~~~~~^
+        update,
+        ^^^^^^^
+    ...<6 lines>...
+        ),
+        ^^
+    ):
+    ^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/persistence.py", line 577, in _collect_update_commands
+    history = state.manager[propkey].impl.get_history(
+        state, state_dict, attributes.PASSIVE_OFF
+    )
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/attributes.py", line 1265, in get_history
+    current = self.get(state, dict_, passive=passive)
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/attributes.py", line 1096, in get
+    value = self._fire_loader_callables(state, key, passive)
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/attributes.py", line 1126, in _fire_loader_callables
+    return state._load_expired(state, passive)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/state.py", line 803, in _load_expired
+    self.manager.expired_attribute_loader(self, toload, passive)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/loading.py", line 1674, in load_scalar_attributes
+    result = load_on_ident(
+        session,
+    ...<4 lines>...
+        no_autoflush=no_autoflush,
+    )
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/loading.py", line 510, in load_on_ident
+    return load_on_pk_identity(
+        session,
+    ...<11 lines>...
+        is_user_refresh=is_user_refresh,
+    )
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/loading.py", line 695, in load_on_pk_identity
+    session.execute(
+    ~~~~~~~~~~~~~~~^
+        q,
+        ^^
+    ...<2 lines>...
+        bind_arguments=bind_arguments,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlmodel/orm/session.py", line 144, in execute
+    return super().execute(
+           ~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<4 lines>...
+        conn,
+        ^^^^^
+    )
+    ^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2358, in _handle_dbapi_exception
+    raise exc_info[1].with_traceback(exc_info[2])
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/dialects/sqlite/aiosqlite.py", line 180, in execute
+    self._adapt_connection._handle_exception(error)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/dialects/sqlite/aiosqlite.py", line 340, in _handle_exception
+    raise error
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/dialects/sqlite/aiosqlite.py", line 157, in execute
+    _cursor: AsyncIODBAPICursor = self.await_(self._connection.cursor())  # type: ignore[arg-type] # noqa: E501
+                                  ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 123, in await_only
+    raise exc.MissingGreenlet(
+    ...<2 lines>...
+    )
+sqlalchemy.exc.MissingGreenlet: greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place? (Background on this error at: https://sqlalche.me/e/20/xd2s)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/rehack/PycharmProjects/solpro_backend/scripts/test_admin_enhancements.py", line 54, in main
+    updated_withdrawal = await update_withdrawal_status(
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "/home/rehack/PycharmProjects/solpro_backend/app/api/v1/endpoints/admin.py", line 180, in update_withdrawal_status
+    withdrawal = await service.update_withdrawal_status(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "/home/rehack/PycharmProjects/solpro_backend/app/service/wallet_service.py", line 326, in update_withdrawal_status
+    wallet = await self.wallet_repo.get(withdrawal.wallet_id)
+                                        ^^^^^^^^^^^^^^^^^^^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/attributes.py", line 569, in __get__
+    return self.impl.get(state, dict_)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/attributes.py", line 1096, in get
+    value = self._fire_loader_callables(state, key, passive)
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/attributes.py", line 1126, in _fire_loader_callables
+    return state._load_expired(state, passive)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/state.py", line 803, in _load_expired
+    self.manager.expired_attribute_loader(self, toload, passive)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/loading.py", line 1674, in load_scalar_attributes
+    result = load_on_ident(
+        session,
+    ...<4 lines>...
+        no_autoflush=no_autoflush,
+    )
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/loading.py", line 510, in load_on_ident
+    return load_on_pk_identity(
+        session,
+    ...<11 lines>...
+        is_user_refresh=is_user_refresh,
+    )
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/loading.py", line 695, in load_on_pk_identity
+    session.execute(
+    ~~~~~~~~~~~~~~~^
+        q,
+        ^^
+    ...<2 lines>...
+        bind_arguments=bind_arguments,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlmodel/orm/session.py", line 144, in execute
+    return super().execute(
+           ~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2228, in _execute_internal
+    ) = compile_state_cls.orm_pre_session_exec(
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<4 lines>...
+        False,
+        ^^^^^^
+    )
+    ^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/context.py", line 577, in orm_pre_session_exec
+    session._autoflush()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 3040, in _autoflush
+    self.flush()
+    ~~~~~~~~~~^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4331, in flush
+    self._flush(objects)
+    ~~~~~~~~~~~^^^^^^^^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4466, in _flush
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/util/langhelpers.py", line 228, in __exit__
+    raise value.with_traceback(traceback)
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 4467, in _flush
+    transaction.rollback(_capture_exception=True)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 2, in rollback
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 1393, in rollback
+    raise rollback_err[1].with_traceback(rollback_err[2])
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 1358, in rollback
+    t[1].rollback()
+    ~~~~~~~~~~~~~^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2611, in rollback
+    self._do_rollback()
+    ~~~~~~~~~~~~~~~~~^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2730, in _do_rollback
+    self._close_impl(try_deactivate=True)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2713, in _close_impl
+    self._connection_rollback_impl()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2705, in _connection_rollback_impl
+    self.connection._rollback_impl()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1130, in _rollback_impl
+    self._handle_dbapi_exception(e, None, None, None, None)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2358, in _handle_dbapi_exception
+    raise exc_info[1].with_traceback(exc_info[2])
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1128, in _rollback_impl
+    self.engine.dialect.do_rollback(self.connection)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 711, in do_rollback
+    dbapi_connection.rollback()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/dialects/sqlite/aiosqlite.py", line 307, in rollback
+    self._handle_exception(error)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/dialects/sqlite/aiosqlite.py", line 340, in _handle_exception
+    raise error
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/dialects/sqlite/aiosqlite.py", line 305, in rollback
+    self.await_(self._connection.rollback())
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rehack/anaconda3/lib/python3.13/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 123, in await_only
+    raise exc.MissingGreenlet(
+    ...<2 lines>...
+    )
+sqlalchemy.exc.MissingGreenlet: greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place? (Background on this error at: https://sqlalche.me/e/20/xd2s)
+Error: greenlet_spawn has not been called; can't call await_only() here. Was IO attempted in an unexpected place? (Background on this error at: https://sqlalche.me/e/20/xd2s)

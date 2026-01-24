@@ -1,4 +1,4 @@
-from typing import Optional, List
+from typing import Optional, List, Dict, Any
 from uuid import UUID
 from decimal import Decimal
 from datetime import datetime, timezone
@@ -16,8 +16,9 @@ from app.repository.user_repo import UserRepository
 from app.models.user import User
 from app.schema.wallet import (
     WalletResponse, WalletSummaryResponse, ReferralEarningResponse,
-    WithdrawalCreate, WithdrawalResponse
+    WithdrawalCreate, WithdrawalResponse, AdminWithdrawalResponse
 )
+from app.config import settings
 
 # Commission rate: 2% of purchase
 COMMISSION_RATE = Decimal("0.02")
@@ -33,6 +34,8 @@ class WalletService:
         self.earning_repo = ReferralEarningRepository(session)
         self.withdrawal_repo = WithdrawalRequestRepository(session)
         self.user_repo = UserRepository(User, session)
+        # Initialize NOWPayments service lazily or when needed to avoid circular imports if any
+        # But here we can just instantiate it when needed.
 
     async def get_wallet(self, user_id: UUID) -> Wallet:
         """Get or create wallet for user"""
@@ -211,6 +214,17 @@ class WalletService:
         if amount > wallet.available_balance:
             raise ValueError("Insufficient available balance")
 
+        # Validate crypto address if applicable
+        if withdrawal_data.payment_method == PaymentMethod.crypto and withdrawal_data.crypto_details:
+            from app.service.nowpayments_service import NOWPaymentsService
+            now_service = NOWPaymentsService()
+            is_valid = await now_service.validate_address(
+                address=withdrawal_data.crypto_details.wallet_address,
+                currency=withdrawal_data.crypto_details.currency
+            )
+            if not is_valid:
+                raise ValueError(f"Invalid {withdrawal_data.crypto_details.currency} address")
+
         # Build withdrawal request
         withdrawal = WithdrawalRequest(
             wallet_id=wallet.id,
@@ -241,8 +255,13 @@ class WalletService:
             available_delta=-amount
         )
 
+        # Store ID before commit expires the object
+        withdrawal_id = withdrawal.id
+
         await self.session.commit()
-        await self.session.refresh(withdrawal)
+
+        # Re-fetch to avoid MissingGreenlet/InvalidRequestError with session.refresh
+        withdrawal = await self.withdrawal_repo.get(withdrawal_id)
 
         # Send notification emails
         user = await self.user_repo.get(user_id)
@@ -292,6 +311,7 @@ class WalletService:
         withdrawal_id: UUID,
         status: WithdrawalStatus,
         admin_notes: Optional[str] = None,
+        rejection_reason: Optional[str] = None,
         background_tasks: Optional[BackgroundTasks] = None
     ) -> Optional[WithdrawalRequest]:
         """Update withdrawal status (admin action)"""
@@ -300,7 +320,12 @@ class WalletService:
             return None
 
         old_status = withdrawal.status
-        withdrawal = await self.withdrawal_repo.update_status(withdrawal_id, status, admin_notes)
+        withdrawal = await self.withdrawal_repo.update_status(
+            withdrawal_id=withdrawal_id,
+            status=status,
+            admin_notes=admin_notes,
+            rejection_reason=rejection_reason
+        )
 
         if withdrawal:
             wallet = await self.wallet_repo.get(withdrawal.wallet_id)
@@ -325,18 +350,23 @@ class WalletService:
                 if user:
                     from app.service.mail import send_email
 
+                    email_context = {
+                        "name": user.name,
+                        "amount": float(withdrawal.amount),
+                        "status": status.value,
+                        "payment_method": withdrawal.payment_method.value,
+                        "admin_notes": admin_notes or ""
+                    }
+
+                    if rejection_reason:
+                        email_context["rejection_reason"] = rejection_reason
+
                     background_tasks.add_task(
                         send_email,
                         email_to=user.email,
                         subject=f"Withdrawal {status.value.capitalize()}",
                         template_name="withdrawal_completed.html",
-                        context={
-                            "name": user.name,
-                            "amount": float(withdrawal.amount),
-                            "status": status.value,
-                            "payment_method": withdrawal.payment_method.value,
-                            "admin_notes": admin_notes or ""
-                        }
+                        context=email_context
                     )
 
         return withdrawal
@@ -344,6 +374,98 @@ class WalletService:
     async def get_pending_withdrawals(self) -> List[WithdrawalRequest]:
         """Get all pending withdrawals (for admin)"""
         return await self.withdrawal_repo.get_pending()
+
+    async def get_all_withdrawals(self, status: Optional[str] = None, limit: int = 10, offset: int = 0) -> dict:
+        """Get all withdrawals with optional status filter"""
+        results, total = await self.withdrawal_repo.get_all_with_filters(status=status, limit=limit, offset=offset)
+
+        withdrawals = []
+        for w, user in results:
+            withdrawals.append(
+                AdminWithdrawalResponse(
+                    id=w.id,
+                    wallet_id=w.wallet_id,
+                    amount=float(w.amount),
+                    payment_method=w.payment_method,
+                    status=w.status,
+                    bank_name=w.bank_name,
+                    account_number=w.account_number,
+                    account_name=w.account_name,
+                    crypto_wallet_address=w.crypto_wallet_address,
+                    crypto_network=w.crypto_network,
+                    crypto_currency=w.crypto_currency,
+                    paypal_email=w.paypal_email,
+                    admin_notes=w.admin_notes,
+                    rejection_reason=w.rejection_reason,
+                    created_at=w.created_at,
+                    processed_at=w.processed_at,
+                    user_name=user.name,
+                    user_email=user.email
+                )
+            )
+
+        return {
+            "withdrawals": withdrawals,
+            "total_count": total
+        }
+
+    async def initiate_nowpayments_payout(self, withdrawal_id: UUID) -> WithdrawalRequest:
+        """Initiate a payout via NOWPayments"""
+        withdrawal = await self.withdrawal_repo.get(withdrawal_id)
+        if not withdrawal:
+            raise ValueError("Withdrawal request not found")
+
+        if withdrawal.status != WithdrawalStatus.pending:
+            raise ValueError("Withdrawal request is not pending")
+
+        # Create payout in NOWPayments
+        withdrawals_payload = [{
+            "address": withdrawal.crypto_wallet_address,
+            "currency": withdrawal.crypto_currency,
+            "amount": float(withdrawal.amount),
+            "ipn_callback_url": settings.NOWPAYMENTS_IPN_CALLBACK_URL,
+            "extra_id": str(withdrawal.id) # Use withdrawal ID as extra_id for tracking
+        }]
+
+        try:
+            from app.service.nowpayments_service import NOWPaymentsService
+            now_service = NOWPaymentsService()
+
+            response = await now_service.create_payout(
+                withdrawals=withdrawals_payload,
+                payout_description=f"Withdrawal {withdrawal.id}"
+            )
+
+            # Update withdrawal with batch ID
+            withdrawal.batch_withdrawal_id = str(response.get("id"))
+
+            # Assuming single withdrawal in batch, get the payout ID
+            if response.get("withdrawals"):
+                withdrawal.payout_id = str(response["withdrawals"][0].get("id"))
+                withdrawal.external_status = response["withdrawals"][0].get("status")
+
+            # Save changes
+            self.session.add(withdrawal)
+
+            # Store ID before commit
+            withdrawal_id = withdrawal.id
+
+            await self.session.commit()
+
+            # Re-fetch to avoid MissingGreenlet/InvalidRequestError with session.refresh
+            withdrawal = await self.withdrawal_repo.get(withdrawal_id)
+
+            return withdrawal
+
+        except Exception as e:
+            raise ValueError(f"Failed to initiate payout: {str(e)}")
+
+    async def verify_nowpayments_payout(self, batch_id: str, verification_code: str) -> bool:
+        """Verify a payout batch"""
+        from app.service.nowpayments_service import NOWPaymentsService
+        now_service = NOWPaymentsService()
+        return await now_service.verify_payout(batch_id, verification_code)
+
 
 
 # Helper function to be called from payment flow

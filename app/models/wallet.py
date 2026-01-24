@@ -134,5 +134,11 @@ class WithdrawalRequest(SQLModel, table=True):
         default=None
     )
 
+    # NOWPayments details
+    batch_withdrawal_id: Optional[str] = Field(nullable=True, index=True)
+    payout_id: Optional[str] = Field(nullable=True, index=True)
+    external_status: Optional[str] = Field(nullable=True)
+    rejection_reason: Optional[str] = Field(nullable=True)
+
     # Relationships
     wallet: "Wallet" = Relationship(back_populates="withdrawal_requests")

@@ -199,21 +199,80 @@ class WithdrawalRequestRepository(BaseRepository[WithdrawalRequest, dict, dict])
         result = await self.session.exec(query)
         return result.all()
 
+    async def get(self, id: UUID) -> Optional[WithdrawalRequest]:
+        """Get withdrawal by ID with UUID mismatch handling"""
+        obj = await super().get(id)
+        if not obj:
+             # Try fetching by string ID
+             from sqlalchemy import text
+             query = select(WithdrawalRequest).where(text("id = :uid")).params(uid=str(id))
+             result = await self.session.exec(query)
+             obj = result.first()
+        return obj
+
+    async def get_all_with_filters(self, status: Optional[str] = None, limit: int = 10, offset: int = 0) -> tuple[List[tuple[WithdrawalRequest, dict]], int]:
+        """Get all withdrawals with filters and pagination, including user info"""
+        from app.models.user import User
+
+        # Join with User table
+        query = select(WithdrawalRequest, User).join(Wallet, WithdrawalRequest.wallet_id == Wallet.id).join(User, Wallet.user_id == User.id)
+
+        if status:
+            query = query.where(WithdrawalRequest.status == status)
+
+        # Get total count
+        from sqlmodel import func
+        count_query = select(func.count()).select_from(WithdrawalRequest)
+        if status:
+            count_query = count_query.where(WithdrawalRequest.status == status)
+
+        total = (await self.session.exec(count_query)).one()
+
+        # Get paginated results
+        query = query.order_by(WithdrawalRequest.created_at.desc()).offset(offset).limit(limit)
+        result = await self.session.exec(query)
+
+        return result.all(), total
+
     async def update_status(
         self,
         withdrawal_id: UUID,
         status: WithdrawalStatus,
-        admin_notes: Optional[str] = None
+        admin_notes: Optional[str] = None,
+        rejection_reason: Optional[str] = None
     ) -> Optional[WithdrawalRequest]:
         """Update withdrawal status"""
+        # Ensure we can find it first (using our robust get)
         withdrawal = await self.get(withdrawal_id)
-        if withdrawal:
-            withdrawal.status = status
-            if admin_notes:
-                withdrawal.admin_notes = admin_notes
-            if status in [WithdrawalStatus.completed, WithdrawalStatus.rejected]:
-                withdrawal.processed_at = datetime.now(timezone.utc)
-            self.session.add(withdrawal)
-            await self.session.commit()
-            await self.session.refresh(withdrawal)
+        if not withdrawal:
+            return None
+
+        processed_at = withdrawal.processed_at
+        if status in [WithdrawalStatus.completed, WithdrawalStatus.rejected]:
+            processed_at = datetime.now(timezone.utc)
+
+        # Use direct SQL update to avoid StaleDataError with UUID mismatch in SQLite
+        from sqlalchemy import text
+        stmt = text("""
+            UPDATE withdrawal_request
+            SET status = :status,
+                admin_notes = :notes,
+                rejection_reason = :reason,
+                processed_at = :processed_at
+            WHERE id = :uid
+        """)
+
+        await self.session.exec(stmt, params={
+            "status": status.value,
+            "notes": admin_notes if admin_notes is not None else withdrawal.admin_notes,
+            "reason": rejection_reason if rejection_reason is not None else withdrawal.rejection_reason,
+            "processed_at": processed_at,
+            "uid": str(withdrawal_id)
+        })
+        await self.session.commit()
+
+        # Re-fetch the object to ensure it's loaded and not expired
+        # session.refresh() failed, so we fetch a fresh instance
+        withdrawal = await self.get(withdrawal_id)
+
         return withdrawal

@@ -20,14 +20,14 @@ def send_test_emails(target_email):
         },
         "reset_password.html": {
             "name": "Test User",
-            "reset_link": "https://propsol-frontend.vercel.app/reset-password?token=dummy_token"
+            "reset_link": "https://propfirmsol.com/reset-password?token=dummy_token"
         },
         "password_changed.html": {
             "name": "Test User"
         },
         "verify_email.html": {
             "name": "Test User",
-            "verification_link": "https://propsol-frontend.vercel.app/verify-email?token=dummy_token"
+            "verification_link": "https://propfirmsol.com/verify-email?token=dummy_token"
         },
         "admin_payment_received.html": {
             "user_email": "user@propsol.com",

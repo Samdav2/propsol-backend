@@ -57,7 +57,7 @@ class AdminService:
         reset_token = create_access_token(admin.id, expires_delta=timedelta(hours=1))
 
         from app.service.mail import send_email
-        reset_link = f"https://propsol-frontend.vercel.app/reset-password?token={reset_token}"
+        reset_link = f"https://propfirmsol.com/reset-password?token={reset_token}"
         background_tasks.add_task(
             send_email,
             email_to=admin.email,

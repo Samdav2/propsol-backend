@@ -76,7 +76,7 @@ class UserService:
 
         # Send email
         from app.service.mail import send_email
-        reset_link = f"https://propsol-frontend.vercel.app/reset-password?token={reset_token}"
+        reset_link = f"https://propfirmsol.com/reset-password?token={reset_token}"
         background_tasks.add_task(
             send_email,
             email_to=user.email,
@@ -129,7 +129,7 @@ class UserService:
 
         # Token valid for 24 hours
         verification_token = create_access_token(user.id, expires_delta=timedelta(hours=24))
-        verification_link = f"https://propsol-frontend.vercel.app/verify-email?token={verification_token}"
+        verification_link = f"https://propfirmsol.com/verify-email?token={verification_token}"
 
         background_tasks.add_task(
             send_email,
